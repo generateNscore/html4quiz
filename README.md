@@ -26,7 +26,7 @@ generateNscore is a Python package that provides as many personalized question s
 
 <strong>Where to get it</strong>
 <ul>
-<li>The source code is currently hosted on GitHub at: <a href="https://github.com/generateNscore/generate_score">https://github.com/generateNscore/generate_score</a></li>
+<li>The source code is currently hosted on GitHub at: <a href="https://github.com/generateNscore/quizhtml">https://github.com/generateNscore/quizhtml</a></li>
 <br>
 
 <pre lang=sh>pip install quizhtml</pre>
