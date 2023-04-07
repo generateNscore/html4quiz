@@ -1,4 +1,4 @@
-import generateNscore as gNs
+import hf4q
 
 QGs = []
 Q=['Submit the sum of the two integers {%vA%} and {%vB%}.',
@@ -16,5 +16,5 @@ flagChoice = True
 flagShuffling = False
 figures = {}
 
-a = gNs.work('checkups1', 'Testing', {'12345678': 'abc def'}, QGs, flagSample, flagChoice, flagShuffling)
-gNs.mkHTMLs(a, figures)
+a = hf4q.work('checkups1', 'Testing', {'12345678': 'abc def'}, QGs, flagSample, flagChoice, flagShuffling)
+hf4q.mkHTMLs(a, figures)
