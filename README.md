@@ -1,7 +1,6 @@
 # quizhtml
  
-Python package to generate question sheets in HTML files which can be distributed over the network and to score answer in text files submitted by students
-
+A package that generates question papers as HTML files to be distributed over the network and grades the answers in text files submitted by students.
 <strong>What is it?</strong>
 
 generateNscore is a Python package that provides as many personalized question sheets in HTML files as you want. It aims to be one of fundamental teaching tools.
@@ -9,7 +8,7 @@ generateNscore is a Python package that provides as many personalized question s
 <strong>Help</strong>
 <ul>
 <li><a href="https://github.com/generateNscore/quizhtml/wiki">Documentation</a></li>
-<li><a href="https://github.com/generateNscore/quizhtml/blob/main/Changelog.md">Changelog</a></li></ul>
+</ul>
 
 <strong>Features</strong>
 <ul>
