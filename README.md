@@ -1,14 +1,14 @@
-# quizhtml
+# hf4q
  
 A package that generates question papers as HTML files to be distributed over the network and grades the answers in text files submitted by students.
 
 <strong>What is it?</strong>
 
-generateNscore is a Python package that provides as many personalized question sheets in HTML files as you want. It aims to be one of fundamental teaching tools.
+hf4q is a Python package that provides as many personalized question sheets in HTML files as you want. It aims to be one of fundamental teaching tools.
 
 <strong>Help</strong>
 <ul>
-<li><a href="https://github.com/generateNscore/quizhtml/wiki">Documentation</a></li>
+<li><a href="https://github.com/generateNscore/hf4q/wiki">Documentation</a></li>
 </ul>
 
 <strong>Features</strong>
@@ -26,10 +26,10 @@ generateNscore is a Python package that provides as many personalized question s
 
 <strong>Where to get it</strong>
 <ul>
-<li>The source code is currently hosted on GitHub at: <a href="https://github.com/generateNscore/quizhtml">https://github.com/generateNscore/quizhtml</a></li>
+<li>The source code is currently hosted on GitHub at: <a href="https://github.com/generateNscore/hf4q">https://github.com/generateNscore/hf4q</a></li>
 <br>
 
-<pre lang=sh>pip install quizhtml</pre>
+<pre lang=sh>pip install hf4q</pre>
 
 </ul>
 
@@ -37,14 +37,14 @@ generateNscore is a Python package that provides as many personalized question s
 
 <strong>Example shots</strong>
 <li>A short-answer question</li>
-<img src="https://github.com/generateNscore/quizhtml/blob/main/img/example1-3.png">
+<img src="https://github.com/generateNscore/hf4q/blob/main/img/example1-3.png">
 <li>A multiple-choice question</li>
-<img src="https://github.com/generateNscore/quizhtml/blob/main/img/example1-6.png">
+<img src="https://github.com/generateNscore/hf4q/blob/main/img/example1-6.png">
 <li>A multiple-choice question with a figure</li>
-<img src="https://github.com/generateNscore/quizhtml/blob/main/img/example1-2.png">
+<img src="https://github.com/generateNscore/hf4q/blob/main/img/example1-2.png">
 <li>A question with multiple-choice figures</li>
-<img src="https://github.com/generateNscore/quizhtml/blob/main/img/example1-1.png">
+<img src="https://github.com/generateNscore/hf4q/blob/main/img/example1-1.png">
 <li>A question with equation and with multiple-choices</li>
-<img src="https://github.com/generateNscore/quizhtml/blob/main/img/example1-4.png">
+<img src="https://github.com/generateNscore/hf4q/blob/main/img/example1-4.png">
 <li>A question with equation and with multiple-choice figures</li>
-<img src="https://github.com/generateNscore/quizhtml/blob/main/img/example1-5.png">
+<img src="https://github.com/generateNscore/hf4q/blob/main/img/example1-5.png">
