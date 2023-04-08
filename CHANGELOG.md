@@ -18,7 +18,7 @@ answer = [{'choices':None, 'ans': ans}]
   
   ```python
   
-  answer=[{'choices':None, 'ans':vA+vB, 'fn': 'variation0_int'}]
+  answer = [{'choices':None, 'ans':vA+vB, 'fn': 'variation0_int'}]
   
   ```
   <li> This is about <a href="https://github.com/generateNscore/htmlfilesforquiz/wiki#2-specifying-method-of-converting-a-short-answer-to-a-set-of-choices">Specifying method of convering short-answer to a set of choices.</a></li></ul></ul>
