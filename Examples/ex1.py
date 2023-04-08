@@ -11,10 +11,10 @@ answer=[vA+vB, vB-vA]'''
 
 QGs.append([Q, A, ('chap1', 'qg1'), 'short'])
 
-flagSample = False
+flagPreview = False
 flagChoice = True
 flagShuffling = False
 figures = {}
 
-a = hf4q.work('checkups1', 'Testing', {'12345678': 'abc def'}, QGs, flagSample, flagChoice, flagShuffling)
+a = hf4q.work('checkups1', 'Testing', {'12345678': 'abc def'}, QGs, flagPreview, flagChoice, flagShuffling)
 hf4q.mkHTMLs(a, figures)
