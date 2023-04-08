@@ -8,4 +8,11 @@
 <li>Started with multiple choice questions.</li></ul>
 <li>What is added is a way to stay in short-answer question</li>
 <ul><li>answer = [{'choices':None, 'ans': ans}]</li>
-  <li>This answering form is different from the one for <a href="https://github.com/generateNscore/htmlfilesforquiz/wiki#2-specifying-method-of-converting-a-short-answer-to-a-set-of-choices">Specifying method of convering short-answer to a set of choices</a></ul></ul>
+  <li>This answering form is different from the one of</li>
+  
+  ```python
+  
+  answer=[{'choices':None, 'ans':vA+vB, 'fn': 'variation0_int'}]
+  
+  ```
+  <li> This is about <a href="https://github.com/generateNscore/htmlfilesforquiz/wiki#2-specifying-method-of-converting-a-short-answer-to-a-set-of-choices">Specifying method of convering short-answer to a set of choices.</a></li></ul></ul>
