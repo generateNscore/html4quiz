@@ -1,4 +1,4 @@
-# Latest verion in release notes is current version
+# Latest version in release notes is current version
 
 ## Version 0.0.11
 
