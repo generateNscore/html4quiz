@@ -7,4 +7,5 @@
 <ul><li>Started with short-answer question and conveyed to multiple choice question with one of prepared mechanisms.</li>
 <li>Started with multiple choice questions.</li></ul>
 <li>What is added is a way to stay in short-answer question</li>
-<ul><li>answer = [{'choices':None, 'ans': ans}]</li></ul></ul>
+<ul><li>answer = [{'choices':None, 'ans': ans}]</li>
+  <li>This answering form is different from the one for ...</ul></ul>
