@@ -1,4 +1,4 @@
-import hf4q
+import htmlfilesforquiz as hf4q
 
 clock='''var argsFromMain=null;function init(prms) {argsFromMain=prms;}//init();
 if (argsFromMain == null) {argsFromMain=[300, 10, 10];}const width= argsFromMain[0];cnvs.width=width;cnvs.height=width;ctx.clearRect(0,0, cnvs.width, cnvs.height);var radius = width/2;ctx.translate(radius, radius);radius = radius * 0.90;

@@ -1,4 +1,4 @@
-import hf4q
+import htmlfilesforquiz as hf4q
 
 QGs = []
 Q=['Submit the sum of the two integers {%vA%} and {%vB%}.',
