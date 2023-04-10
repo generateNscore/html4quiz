@@ -44,6 +44,7 @@ To test this function, try the code below in Shell screen.
 
     columnsN=None
     if isinstance(ans, dict) and 'choices' in ans:
+
         if 'cols' in ans and ans['cols']: columnsN=ans['cols']
 
         if ans['choices'] and isinstance(ans['choices'], (list, tuple)):
@@ -60,7 +61,8 @@ To test this function, try the code below in Shell screen.
             else:
                 return '<font color="#dd0000"><bold>Error</bold></font>::  ??????', 0, 0
         else:
-            return f'<font color="#dd0000"><bold>Error</bold></font>::  {err}', 0, 0
+##            return f'<font color="#dd0000"><bold>Error</bold></font>::  {err}', 0, 0
+            return '', -1, ans['ans'], None # 오류 대신 무조건 short-answer question으로 정함. -1 <---특별한 의미.
     else:
         if ans: # 정수 또는 실수인 일반적인 경우
             ans=round2MSF(ans)

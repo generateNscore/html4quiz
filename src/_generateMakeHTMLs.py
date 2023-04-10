@@ -34,7 +34,7 @@ def mkHTMLs(work, figures=None):
             for i in range(func.count(gitHubFolder)):
                 func=func.replace(gitHubFolder, 'https://pvlaboratory.github.io/Jict2004')
 
-        if work.Flag4Sample:
+        if work.Flag4Preview:
             table=templateTable+''.join([f'\n{jj+1}: {qna[jj][1]}' for jj in range(len(qna))])
             table=table.replace('NAME', f'{std}') #<---
         else:
@@ -43,7 +43,7 @@ def mkHTMLs(work, figures=None):
         
         table += '</textarea></td></tr></tbody></table>'
 
-        if work.Flag4Sample:
+        if work.Flag4Preview:
             file = templateHEAD.replace('TITLE', f'{work.Heading} {work.Name}{std} {std}') + table
         else:
             file = templateHEAD.replace('TITLE', f'{work.Heading} {work.Name}{std} {work.STDs[std]}') + table
@@ -65,7 +65,7 @@ def mkHTMLs(work, figures=None):
             func = line_arrow +func
 
 
-        if work.Flag4Sample:
+        if work.Flag4Preview:
             file += JS4TABLEwithRadiobuttons.replace('FILENAME', f'{work.Name}{std}').replace('NAME', f'{std}')
         else:
             file += JS4TABLEwithRadiobuttons.replace('FILENAME', f'{work.Name}{std}').replace('NAME', work.STDs[std])
@@ -78,24 +78,24 @@ def mkHTMLs(work, figures=None):
         os.mkdir(os.path.join('.', f'{work.Name}', f'{work.Name}'))
 
     for k, v in HTMLfiles.items():
-        open(os.path.join('.',f'{work.Name}',f'{work.Name}',f'{work.Name}{k}.html'),
+        open(os.path.join('.',f'{work.Name}',f'{work.Name}',f'{work.Name}_{k}.html'),
              mode='w', encoding='utf-8').write(v)
 
     # index.html
-    if work.Flag4Sample:
+    if work.Flag4Preview:
         file = templateBodyF.replace('TITLE', f'{work.Heading} {work.Name}') + '\n<table><tbody>'
         for k in work.Sheets.keys():
-            file += f'\n<tr><td><a href="./{work.Name}{k}.html">{k}--{work.QGs[k][2]}</a></td></tr>'
+            file += f'\n<tr><td><a href="./{work.Name}_{k}.html">{k}--{work.QGs[k][2]}</a></td></tr>'
         file +='</tbody></table></html>'
         open(os.path.join('.',f'{work.Name}',f'{work.Name}','index.html'), mode='w', encoding='utf-8').write(file)
         if k:
             webbrowser.open(os.path.join('.',f'{work.Name}',f'{work.Name}','index.html'))
         else:
-            webbrowser.open(os.path.join('.',f'{work.Name}',f'{work.Name}',f'{work.Name}{k}.html'))
+            webbrowser.open(os.path.join('.',f'{work.Name}',f'{work.Name}',f'{work.Name}_{k}.html'))
     else:
         file = templateBodyF.replace('TITLE', f'{work.Heading} {work.Name}') + '\n<table><tbody>'
         for k, Sname in work.STDs.items():
-            file += f'\n<tr><td><a href="./{work.Name}{k}.html">{k}--{Sname}</a></td></tr>'
+            file += f'\n<tr><td><a href="./{work.Name}_{k}.html">{k}--{Sname}</a></td></tr>'
         file +='</tbody></table></html>'
         open(os.path.join('.',f'{work.Name}',f'{work.Name}','index.html'), mode='w', encoding='utf-8').write(file)
 
@@ -236,6 +236,7 @@ templateBodyR='''<hr> <div id="Qs" style="word-break:keep-all; display: block; f
 
 templateF='''function display_QqNUM() {
 document.getElementById("Qs").innerHTML='TEXT';
+Qnumber = qNUM;
 setCheckedRadio(qNUM);
 
 var cnvs = document.getElementById("canvas");
@@ -302,20 +303,20 @@ function addAnswers2Textarea() {
   var newText = text.slice(0, indexOfFirst+searchTerm.length);
   for (let q=0; q<=Qmax; q++) {
     if (answers[q] == null) {newText += String.fromCharCode(13)+(q+1).toString()+": ";}
-    else {newText += String.fromCharCode(13)+(q+1).toString()+": "+(answers[q]+1).toString();}
+    else {newText += String.fromCharCode(13)+(q+1).toString()+": "+answers[q].toString();}
   }
   textarea.value = newText;
 }
 
 function handleClick(myRadio) {
-  answers[parseInt(myRadio.name.slice(1))]=parseInt(myRadio.value);
+  answers[parseInt(myRadio.name.slice(1))]=parseInt(myRadio.value)+1;
   addAnswers2Textarea();
 }
 
 function setCheckedRadio(q) {
   var radios = document.getElementsByName('Q'+q.toString());
   //for (let j=0; j<radios.length; j++) {radios[j].removeAttribute("checked");}
-  if (radios.length > 0 && answers[q] != null) {radios[answers[q]].setAttribute("checked", true);}
+  if (radios.length > 0 && answers[q] != null) {radios[answers[q]-1].setAttribute("checked", true);}
 }
 
 function destroyClickedElement(event) {

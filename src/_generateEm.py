@@ -69,7 +69,7 @@ class work():
         self.Heading=heading
         self.STDs=STDs
         self.QGs=QGs
-        self.Flag4Sample = flagSample
+        self.Flag4Preview = flagSample
         self.Flag4Choice = flagChoice
         self.Flag4Shuffling = flagShuffling
         #self.Flag4Answer = True
@@ -96,7 +96,7 @@ class work():
                 print('One of keys and values is not a string')
                 return
                 
-        if self.Flag4Sample:
+        if self.Flag4Preview:
             for j, qg in enumerate(self.QGs):
                 indices=list(range(len(qg[0])))
                 self.Sheets[j]={'orders':indices,
@@ -115,7 +115,7 @@ class work():
     def makeSheets(self):
         if not self.QGs or not self.STDs: return
         
-        if self.Flag4Sample:
+        if self.Flag4Preview:
             for std, v in self.Sheets.items():
                 tmp=[]
                 for seed, j in zip(v['seed'], v['orders']):
@@ -126,12 +126,25 @@ class work():
                         self.Sheets.clear()
                         return
 
-                    if self.QGs[std][-1] != 'python' and (self.Flag4Choice or (isinstance(out[1], dict) and 'choices' in out[1])):
-                        xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
-                        #out = (out[0]+xtra, int(ansChoice), out[-1], out[1])
-                        out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
+##                    if self.QGs[std][-1] != 'python' and (self.Flag4Choice or (isinstance(out[1], dict) and 'choices' in out[1])):
+##                        xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
+##                        #out = (out[0]+xtra, int(ansChoice), out[-1], out[1])
+##                        out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
+##
+##                    tmp.append(out)
 
-                    tmp.append(out)
+                    if self.QGs[std][-1] == 'python':
+                        tmp.append(out)
+                    elif isinstance(out[1], (int, float)) and self.Flag4Choice:
+                        xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
+                        out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
+                        tmp.append(out)
+                    elif isinstance(out[1], dict) and 'choices' in out[1] and isinstance(out[1]['ans'], (int, float)):
+                        xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
+                        out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
+                        tmp.append(out)
+                    else:
+                        tmp.append(out)
 
                 v['Q&A'] = tmp
                 
@@ -146,14 +159,28 @@ class work():
                         self.Sheets.clear()
                         return
 
-                    #if self.Flag4Choice or self.QGs[j][-1] == 'choice' or (isinstance(out[1], dict) and 'choices' in out[1]):
-                    #if self.QGs[std][-1] != 'python' and (self.Flag4Choice or (isinstance(out[1], dict) and 'choices' in out[1])):
-                    if self.QGs[j][-1] != 'python' and (self.Flag4Choice or (isinstance(out[1], dict) and 'choices' in out[1])):
-                        xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
-                        #out = (out[0]+xtra, int(ansChoice), out[-1], out[1]) # 본래 답들 추가
-                        out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
+##                    #if self.Flag4Choice or self.QGs[j][-1] == 'choice' or (isinstance(out[1], dict) and 'choices' in out[1]):
+##                    #if self.QGs[std][-1] != 'python' and (self.Flag4Choice or (isinstance(out[1], dict) and 'choices' in out[1])):
+##                    if self.QGs[j][-1] != 'python' and (self.Flag4Choice or (isinstance(out[1], dict) and 'choices' in out[1])):
+##                        xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
+##                        #out = (out[0]+xtra, int(ansChoice), out[-1], out[1]) # 본래 답들 추가
+##                        out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
+##
+##                    tmp.append(out)
 
-                    tmp.append(out)
+
+                    if self.QGs[j][-1] == 'python':
+                        tmp.append(out)
+                    elif isinstance(out[1], (int, float)) and self.Flag4Choice:
+                        xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
+                        out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
+                        tmp.append(out)
+                    elif isinstance(out[1], dict) and 'choices' in out[1] and isinstance(out[1]['ans'], (int, float)):
+                        xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
+                        out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
+                        tmp.append(out)
+                    else:
+                        tmp.append(out)
 
                 v['Q&A'] = tmp
 
@@ -163,8 +190,8 @@ class work():
 
 
     def saveWork(self):
-        if self.Flag4Sample:
-            print("It is checkup mode. Set the flag4Sample to False and try again")
+        if self.Flag4Preview:
+            print("It is checkup mode. Set the Flag4Preview to False and try again")
             return
         
         if not os.path.exists(os.path.join('.', f'{self.Name}')):
