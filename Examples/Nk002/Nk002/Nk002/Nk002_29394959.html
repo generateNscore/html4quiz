@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Example Nk00229394959 ghe jeee</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+.prePrompt {float: left; margin: 20px   0px 20px 10px; padding: 10px   5px 10px   5px; background: #efc; font-family: bold Courier New; font-size: 14px; line-height: 0.5 em; width: 30px;              text-align: left; border: 1px solid powderblue; border-right: none; color: #700;}
+.preBody     {float: left; margin: 20px 10px 20px   0px; padding: 10px 10px 10px 10px; background: #efc; font-family: bold Courier New; font-size: 14px; line-height: 0.5 em; width: text-content; text-align: left; border: 1px solid powderblue; }
+.preChoice  {float: left; margin: 0px 10px 20px 10px; padding: 10px; background: #fff; font-family: bold Courier New; font-size: 14px; line-height: 0.5 em; width: text-content; text-align: left; border: 1px solid powderblue; }
+.btn             {align-items: center; appearance: none; background-color: #eef; border-radius: 24px; border-style: none; box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0; box-sizing: border-box; color: #3c40e3; cursor: pointer; display: inline-flex; fill: currentcolor; font-family: "Google Sans",Roboto,Arial,sans-serif; font-size: 16px; font-weight: 500; height: 48px; justify-content: center; letter-spacing: .25px; line-height: normal; max-width: 100%; overflow: visible; padding: 2px 24px; margin: 5px; position: relative; text-align: center; text-transform: none; transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms; user-select: none; -webkit-user-select: none; touch-action: manipulation; width: auto; will-change: transform,opacity; z-index: 0;}
+.btn2           {align-items: center; background-clip: padding-box; background-color: #fa6400; border: 1px solid transparent; border-radius: .25rem; box-shadow: rgba(0, 0, 0, 0.2) 0 1px 3px 0; box-sizing: border-box; color: #fff; cursor: pointer; display: inline-flex; font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 20px; font-weight: 600; justify-content: center; line-height: 1.25; margin: 0px 10px 2px 5px; min-height: 3rem; padding: calc(.875rem - 1px) calc(1.5rem - 1px); position: relative; text-decoration: none; transition: all 250ms; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: baseline; width: auto;}
+
+.radiocontainer {background-color:#e8e8f8; display: block; position: relative; padding:10px 20px 10px 50px; margin: 0px 5px 2px 0px; cursor: pointer; font-size: 18px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; word-wrap: break-word; min-width: 200px;}
+.radiocontainer input {  position: absolute;  opacity: 0;  cursor: pointer;}
+.checkmark {  position: absolute;  top: 15px;  left: 15px;  height: 19px;  width: 19px;  background-color: #fff;  border-radius: 50%;}
+.checkedlabel {  background-color:#ddd;}
+.radiocontainer:hover input ~ .checkmark {}
+.radiocontainer:hover {  background-color: #ddd;}
+.radiocontainer input:checked ~ .checkmark {  background-color: #12693F;}
+.checkmark:after {  content: "";  position: absolute;  display: none;}
+.radiocontainer input:checked ~ .checkmark:after {  display: block;}
+.radiocontainer .checkmark:after {top: 6px; left: 6px; width: 7px; height: 7px; border-radius: 50%; background: white;}
+</style>
+</head>
+<body style="word-break:keep-all; display: block; font-family: malgun;  font-size: 18px;">
+<center><h4>Example Nk00229394959 ghe jeee</h4></center><ul style="font-size: 14px">
+<li>객관식 질문의 답은 정수로 답하시오. For multiple-choice questions, answer with an integer.</li>
+<li>단답형 질문의 숫자 답은, 가장 중요한 3개의 숫자로 반올림하시오. For numerical answer to short questions, round to the three most significant digits.</li>
+<li>요청에 따라 숫자를 문자열로 제출해는 경우, 양쪽에 따옴표를 붙이시오. If you are asked to submit a number as a string, put quotes around it.</li></ul>
+<table>
+<tbody>
+<tr>
+<td ><button onclick="saveTextAsFile()" class="btn2">Save<br>Answers<br>to File</button></td>
+<td><textarea id="inputTextToSave" cols="155" rows="5" style="font-family: malgun;  font-size: 16px; padding: 5px  0px  5px  20px; ">
+나, ghe jeee은(는) 위 내용을 읽고 아래 답을 직접 작성했음을 확인합니다. I, ghe jeee, confirm that I read the notes above and wrote the answer myself below.
+--------------------------------------------------------------------------------------------------------------------
+1: 
+2: </textarea></td></tr></tbody></table><input type="button" onclick="javascript:display_Q0();" class= "btn" value="Q-1"  />
+<input type="button" onclick="javascript:display_Q1();" class= "btn" value="Q-2"  />
+<hr> <div id="Qs" style="word-break:keep-all; display: block; font-family: malgun; font-size: 18px; margin: 0px 10px 0px 10px; padding: 0px 5px 0px 5px;"></div>
+<canvas id="canvas" width="800" height="0"></canvas>
+<script type="text/javascript">
+function saveTextAsFile() {
+  var textToSave = document.getElementById("inputTextToSave").value;
+  var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
+  var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
+  var fileNameToSaveAs = "Nk00229394959.txt"
+
+  var downloadLink = document.createElement("a");
+  downloadLink.download = fileNameToSaveAs;
+  downloadLink.innerHTML = "Download File";
+  downloadLink.href = textToSaveAsURL;
+  downloadLink.onclick = destroyClickedElement;
+  downloadLink.style.display = "none";
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+}
+
+function addAnswers2Textarea() {
+  const textarea = document.getElementById("inputTextToSave");
+  var text = textarea.value;
+  const searchTerm = "--------------------------------------------------------------------------------------------------------------------";
+  const indexOfFirst = text.indexOf(searchTerm);
+  var newText = text.slice(0, indexOfFirst+searchTerm.length);
+  for (let q=0; q<=Qmax; q++) {
+    if (answers[q] == null) {newText += String.fromCharCode(13)+(q+1).toString()+": ";}
+    else {newText += String.fromCharCode(13)+(q+1).toString()+": "+answers[q].toString();}
+  }
+  textarea.value = newText;
+}
+
+function handleClick(myRadio) {
+  answers[parseInt(myRadio.name.slice(1))]=parseInt(myRadio.value)+1;
+  addAnswers2Textarea();
+}
+
+function setCheckedRadio(q) {
+  var radios = document.getElementsByName('Q'+q.toString());
+  //for (let j=0; j<radios.length; j++) {radios[j].removeAttribute("checked");}
+  if (radios.length > 0 && answers[q] != null) {radios[answers[q]-1].setAttribute("checked", true);}
+}
+
+function destroyClickedElement(event) {
+    document.body.removeChild(event.target);
+}
+</script>
+<script type="application/javascript">
+function display_Q0() {
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the x component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> -6<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> -2<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> -1<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> -3<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+Qnumber = 0;
+setCheckedRadio(0);
+
+var cnvs = document.getElementById("canvas");
+var ctx = cnvs.getContext("2d");
+ctx.clearRect(0,0, cnvs.width, cnvs.height);
+cnvs.height=300;
+var argsFromMain=null;
+function init(prms) {argsFromMain=prms;}
+init([[20, 20], [[-3, 5, 0, 2], [1, 2, 1, -3]], 'off']);
+//if (argsFromMain == null) {argsFromMain=[[300, 1400], [[2, 0], [0, 3]]];}
+//if (argsFromMain == null) {argsFromMain=[[20, 20], [[2, 0], [0, 3]], 'off'];}
+if (argsFromMain == null) {argsFromMain=[[20, 20], [[2, 0, -2,-1], [0, 3, 1, 3]], 'off'];}
+//[cnvs.height, cnvs.width]=argsFromMain[0];
+//cnvs.width=window.innerWidth-50; cnvs.height=window.innerHeight-380;
+const rA = argsFromMain[0][0], jB=argsFromMain[0][1];
+var pxX, pxY, bbox, dragging=false, vec2drag=null, point=null;
+
+const hafA=rA/2, yo=20.5, yB=yo+jB*rA, jC=jB/2, cY=yo+rA*jC, hafPI=Math.PI/2;
+cnvs.height = yB+10, cnvs.width = yB+220;
+const ch=cnvs.height, cw=cnvs.width;
+const btn=argsFromMain[2];
+var SubmitBtn=null;
+
+if (btn == 'on') {SubmitBtn={x: yB+100, y:40, w:140, h:50, color:"#d7d"};}
+
+function randInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+const colors={0:"red", 1:"green", 2:"blue", 3:"#ff0", 4: "#f0f", 5:"#0ff"};
+const vectors = new Array();
+for (let j=0; j<argsFromMain[1].length; j++) {
+  const vec = argsFromMain[1][j];
+  if (vec.length == 2) {vectors.push({x: vec[0]*rA, y: vec[1]*rA, xo: randInt(-3,4)*rA, yo: randInt(-3,4)*rA, c: colors[j], points: null});}
+  else {vectors.push({x: vec[0]*rA, y: vec[1]*rA, xo: vec[2]*rA, yo: vec[3]*rA, c: colors[j], points: null});}
+}
+
+for (let j=0; j<vectors.length; j++) {
+  var points=[], ratio, xVo=vectors[j].xo+cY, yVo=cY-vectors[j].yo;
+
+  if (Math.abs(vectors[j].x) > Math.abs(vectors[j].y)) {
+    ratio = vectors[j].y/vectors[j].x;
+    if (vectors[j].x > 0) {
+      for (let x=0; x<=vectors[j].x; x++) {points.push([xVo+x, yVo+x*ratio]);}
+    }
+    else {
+      for (let x=0; x>=vectors[j].x; x--) {points.push([xVo+x, yVo+x*ratio]);}
+    }
+    points.push('x');
+  }
+  else {
+    ratio = vectors[j].x/vectors[j].y;
+    if (vectors[j].y > 0) {
+      for (let y=0; y<=vectors[j].y; y++) {points.push([xVo+y*ratio, yVo-y]);}
+    }
+    else {
+      for (let y=0; y>=vectors[j].y; y--) {points.push([xVo+y*ratio, yVo-y]);}
+    }
+    points.push('y');
+  }
+  vectors[j].points=points;
+}
+
+//console.log(vectors);
+var y, angle, length, canvasImage;
+
+function drawBackground() {
+  ctx.fillStyle="black"; ctx.font = "12px Arial";  ctx.textAlign="center";
+  for (j=0; j<=jB; j++) {
+    y = yo+j*rA;
+    if ((j-jC)%5 == 0) {
+      ctx.beginPath();
+      ctx.strokeStyle="#aaa";
+      ctx.fillText(Math.floor((j-jC)/5)*5, y, cY+13);
+      ctx.fillText(Math.floor((jC-j)/5)*5, cY-10, y+5);
+    }
+    else {ctx.strokeStyle="#ddd";}
+    ctx.beginPath(); ctx.moveTo(y, yo); ctx.lineTo(y, yB); ctx.stroke(); // vertical;
+    ctx.beginPath(); ctx.moveTo(yo, y); ctx.lineTo(yB, y); ctx.stroke(); //horizontal;
+  }
+
+  if (SubmitBtn != null) {
+    ctx.beginPath();
+    ctx.shadowColor = "black";
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 1;
+    ctx.shadowBlur = 3;
+    ctx.fillStyle=SubmitBtn.color;
+    ctx.fillRect(SubmitBtn.x-SubmitBtn.w/2,SubmitBtn.y-SubmitBtn.h/2,SubmitBtn.w,SubmitBtn.h);
+    ctx.shadowColor = "transparent";
+    ctx.fillStyle="black"; ctx.font = "28px arial"; ctx.textAlign="center"; 
+    ctx.fillText("Submit", SubmitBtn.x, SubmitBtn.y+10);
+    ctx.closePath();
+  }
+  canvasImage=ctx.getImageData(0,0,cw,ch);
+}
+
+drawBackground();
+
+function Submit() {
+  var ans="to be determined....";
+  answers[Qnumber]=ans;
+  addAnswers2Textarea();
+}
+
+
+
+function isPointOnLine(points, x,y) {
+  const xORy = points.slice(-1);
+  if (xORy == 'x') {
+    for (let j=0; j<points.length-1; j++) {
+      if (points[j][0] == x) {
+         if (points[j][1]-1 <= y && y <= points[j][1]+1) {
+            return true;
+         }
+      }
+    }
+  }
+  else {
+    for (let j=0; j<points.length-1; j++) {
+      if (points[j][1] == y) {
+         if (points[j][0]-1 <= x && x <= points[j][0]+1) {
+            return true;
+         }
+      }
+    }
+  }
+  return false;
+}
+
+function onmouseup(e) {
+  if (dragging) {
+    const dx=vectors[vec2drag].xo+cY-vectors[vec2drag].points[0][0], dy=cY-vectors[vec2drag].yo-vectors[vec2drag].points[0][1];
+
+    var newPoints = new Array();
+    for (let j=0; j<vectors[vec2drag].points.length-1; j++) {
+      newPoints.push( [vectors[vec2drag].points[j][0]+dx, vectors[vec2drag].points[j][1]+dy]);
+    }
+    newPoints.push(vectors[vec2drag].points.slice(-1));
+
+    vectors[vec2drag].points=newPoints;
+    vectors[vec2drag].c = vec2drag ? "blue" : "red";
+    dragging=false;
+    vec2drag=null;
+    point = null;
+    drawAll();
+  }
+}
+
+function onmousedown(e) {
+  e.preventDefault();
+  bbox = cnvs.getBoundingClientRect();
+  pxX=e.clientX-bbox.left*(cw/bbox.width);
+  pxY=e.clientY-bbox.top*(ch/bbox.height);
+
+  if (SubmitBtn != null && SubmitBtn.x-SubmitBtn.w/2<=pxX && pxX <= SubmitBtn.x+SubmitBtn.w/2 && SubmitBtn.y-SubmitBtn.h/2<=pxY && pxY <= SubmitBtn.y+SubmitBtn.h/2) {Submit();}
+
+
+  for (let j=0; j<vectors.length; j++) {
+    const isItON = isPointOnLine(vectors[j].points, Math.round(pxX)+0.5, Math.round(pxY)+0.5);
+    if (isItON) {
+       dragging=true;
+       vec2drag=j;
+       vectors[j].c="black";
+       point = [Math.round(pxX)+0.5, Math.round(pxY)+0.5];
+       drawAll();
+       break;
+    }
+  }
+}
+
+
+function onmousemove(e) {
+  e.preventDefault();
+  bbox = cnvs.getBoundingClientRect();
+  pxX=e.clientX-bbox.left*(cw/bbox.width);
+  pxY=e.clientY-bbox.top*(ch/bbox.height);
+
+  if (dragging) {
+    vectors[vec2drag].xo += (Math.round(pxX)+0.5-point[0]);
+    vectors[vec2drag].yo += -(Math.round(pxY)+0.5-point[1]);
+    point = [Math.round(pxX)+0.5, Math.round(pxY)+0.5];
+    drawAll();
+  }
+  else {
+    for (let j=0; j<vectors.length; j++) {
+      const isItON = isPointOnLine(vectors[j].points, Math.round(pxX)+0.5, Math.round(pxY)+0.5);
+      if (isItON) {
+        vectors[j].c="black";
+        drawAll();
+        break;
+      }
+      else {
+        vectors[j].c=colors[j];
+        drawAll();
+      }
+    }
+  }
+}
+
+
+
+function drawVector(angle, length) {
+  ctx.beginPath(); ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
+}
+
+function drawAll() {
+  ctx.putImageData(canvasImage,0,0);
+/*
+  if (vectors[0].xo-0.1 <= vectors[1].xo && vectors[1].xo <= vectors[0].xo+0.1 && vectors[0].yo-0.1 <= vectors[1].yo && vectors[1].yo <= vectors[0].yo+0.1) {
+    vectors[vec2drag].c = vec2drag ? "blue" : "red";
+    vec2drag=null;
+    point = null;
+    dragging=false;
+    vectors[0].xo=0, vectors[0].yo=0, vectors[1].xo=0, vectors[1].yo=0;
+  }
+*/
+
+  ctx.lineWidth=2;
+  for (let j=0; j<vectors.length; j++) {
+    ctx.beginPath();
+    ctx.translate(vectors[j].xo+cY, cY-vectors[j].yo);
+    ctx.strokeStyle=vectors[j].c;
+    angle=hafPI-Math.atan2(vectors[j].y, vectors[j].x);
+    length=Math.sqrt(vectors[j].x**2 + vectors[j].y**2);
+    ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
+    ctx.translate(-vectors[j].xo-cY, vectors[j].yo-cY);
+  }
+  ctx.lineWidth=1;
+
+}
+
+cnvs.addEventListener('mouseup', onmouseup);
+cnvs.addEventListener('mousedown', onmousedown);
+cnvs.addEventListener('mousemove', onmousemove);
+
+drawAll();
+}
+function display_Q1() {
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Find the y component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> 3<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 7<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 11<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 19<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+Qnumber = 1;
+setCheckedRadio(1);
+
+var cnvs = document.getElementById("canvas");
+var ctx = cnvs.getContext("2d");
+ctx.clearRect(0,0, cnvs.width, cnvs.height);
+cnvs.height=300;
+var argsFromMain=null;
+function init(prms) {argsFromMain=prms;}
+init([[20, 20], [[-1, 5, 1, -3], [1, 2, -1, 2]], 'off']);
+//if (argsFromMain == null) {argsFromMain=[[300, 1400], [[2, 0], [0, 3]]];}
+//if (argsFromMain == null) {argsFromMain=[[20, 20], [[2, 0], [0, 3]], 'off'];}
+if (argsFromMain == null) {argsFromMain=[[20, 20], [[2, 0, -2,-1], [0, 3, 1, 3]], 'off'];}
+//[cnvs.height, cnvs.width]=argsFromMain[0];
+//cnvs.width=window.innerWidth-50; cnvs.height=window.innerHeight-380;
+const rA = argsFromMain[0][0], jB=argsFromMain[0][1];
+var pxX, pxY, bbox, dragging=false, vec2drag=null, point=null;
+
+const hafA=rA/2, yo=20.5, yB=yo+jB*rA, jC=jB/2, cY=yo+rA*jC, hafPI=Math.PI/2;
+cnvs.height = yB+10, cnvs.width = yB+220;
+const ch=cnvs.height, cw=cnvs.width;
+const btn=argsFromMain[2];
+var SubmitBtn=null;
+
+if (btn == 'on') {SubmitBtn={x: yB+100, y:40, w:140, h:50, color:"#d7d"};}
+
+function randInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+const colors={0:"red", 1:"green", 2:"blue", 3:"#ff0", 4: "#f0f", 5:"#0ff"};
+const vectors = new Array();
+for (let j=0; j<argsFromMain[1].length; j++) {
+  const vec = argsFromMain[1][j];
+  if (vec.length == 2) {vectors.push({x: vec[0]*rA, y: vec[1]*rA, xo: randInt(-3,4)*rA, yo: randInt(-3,4)*rA, c: colors[j], points: null});}
+  else {vectors.push({x: vec[0]*rA, y: vec[1]*rA, xo: vec[2]*rA, yo: vec[3]*rA, c: colors[j], points: null});}
+}
+
+for (let j=0; j<vectors.length; j++) {
+  var points=[], ratio, xVo=vectors[j].xo+cY, yVo=cY-vectors[j].yo;
+
+  if (Math.abs(vectors[j].x) > Math.abs(vectors[j].y)) {
+    ratio = vectors[j].y/vectors[j].x;
+    if (vectors[j].x > 0) {
+      for (let x=0; x<=vectors[j].x; x++) {points.push([xVo+x, yVo+x*ratio]);}
+    }
+    else {
+      for (let x=0; x>=vectors[j].x; x--) {points.push([xVo+x, yVo+x*ratio]);}
+    }
+    points.push('x');
+  }
+  else {
+    ratio = vectors[j].x/vectors[j].y;
+    if (vectors[j].y > 0) {
+      for (let y=0; y<=vectors[j].y; y++) {points.push([xVo+y*ratio, yVo-y]);}
+    }
+    else {
+      for (let y=0; y>=vectors[j].y; y--) {points.push([xVo+y*ratio, yVo-y]);}
+    }
+    points.push('y');
+  }
+  vectors[j].points=points;
+}
+
+//console.log(vectors);
+var y, angle, length, canvasImage;
+
+function drawBackground() {
+  ctx.fillStyle="black"; ctx.font = "12px Arial";  ctx.textAlign="center";
+  for (j=0; j<=jB; j++) {
+    y = yo+j*rA;
+    if ((j-jC)%5 == 0) {
+      ctx.beginPath();
+      ctx.strokeStyle="#aaa";
+      ctx.fillText(Math.floor((j-jC)/5)*5, y, cY+13);
+      ctx.fillText(Math.floor((jC-j)/5)*5, cY-10, y+5);
+    }
+    else {ctx.strokeStyle="#ddd";}
+    ctx.beginPath(); ctx.moveTo(y, yo); ctx.lineTo(y, yB); ctx.stroke(); // vertical;
+    ctx.beginPath(); ctx.moveTo(yo, y); ctx.lineTo(yB, y); ctx.stroke(); //horizontal;
+  }
+
+  if (SubmitBtn != null) {
+    ctx.beginPath();
+    ctx.shadowColor = "black";
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 1;
+    ctx.shadowBlur = 3;
+    ctx.fillStyle=SubmitBtn.color;
+    ctx.fillRect(SubmitBtn.x-SubmitBtn.w/2,SubmitBtn.y-SubmitBtn.h/2,SubmitBtn.w,SubmitBtn.h);
+    ctx.shadowColor = "transparent";
+    ctx.fillStyle="black"; ctx.font = "28px arial"; ctx.textAlign="center"; 
+    ctx.fillText("Submit", SubmitBtn.x, SubmitBtn.y+10);
+    ctx.closePath();
+  }
+  canvasImage=ctx.getImageData(0,0,cw,ch);
+}
+
+drawBackground();
+
+function Submit() {
+  var ans="to be determined....";
+  answers[Qnumber]=ans;
+  addAnswers2Textarea();
+}
+
+
+
+function isPointOnLine(points, x,y) {
+  const xORy = points.slice(-1);
+  if (xORy == 'x') {
+    for (let j=0; j<points.length-1; j++) {
+      if (points[j][0] == x) {
+         if (points[j][1]-1 <= y && y <= points[j][1]+1) {
+            return true;
+         }
+      }
+    }
+  }
+  else {
+    for (let j=0; j<points.length-1; j++) {
+      if (points[j][1] == y) {
+         if (points[j][0]-1 <= x && x <= points[j][0]+1) {
+            return true;
+         }
+      }
+    }
+  }
+  return false;
+}
+
+function onmouseup(e) {
+  if (dragging) {
+    const dx=vectors[vec2drag].xo+cY-vectors[vec2drag].points[0][0], dy=cY-vectors[vec2drag].yo-vectors[vec2drag].points[0][1];
+
+    var newPoints = new Array();
+    for (let j=0; j<vectors[vec2drag].points.length-1; j++) {
+      newPoints.push( [vectors[vec2drag].points[j][0]+dx, vectors[vec2drag].points[j][1]+dy]);
+    }
+    newPoints.push(vectors[vec2drag].points.slice(-1));
+
+    vectors[vec2drag].points=newPoints;
+    vectors[vec2drag].c = vec2drag ? "blue" : "red";
+    dragging=false;
+    vec2drag=null;
+    point = null;
+    drawAll();
+  }
+}
+
+function onmousedown(e) {
+  e.preventDefault();
+  bbox = cnvs.getBoundingClientRect();
+  pxX=e.clientX-bbox.left*(cw/bbox.width);
+  pxY=e.clientY-bbox.top*(ch/bbox.height);
+
+  if (SubmitBtn != null && SubmitBtn.x-SubmitBtn.w/2<=pxX && pxX <= SubmitBtn.x+SubmitBtn.w/2 && SubmitBtn.y-SubmitBtn.h/2<=pxY && pxY <= SubmitBtn.y+SubmitBtn.h/2) {Submit();}
+
+
+  for (let j=0; j<vectors.length; j++) {
+    const isItON = isPointOnLine(vectors[j].points, Math.round(pxX)+0.5, Math.round(pxY)+0.5);
+    if (isItON) {
+       dragging=true;
+       vec2drag=j;
+       vectors[j].c="black";
+       point = [Math.round(pxX)+0.5, Math.round(pxY)+0.5];
+       drawAll();
+       break;
+    }
+  }
+}
+
+
+function onmousemove(e) {
+  e.preventDefault();
+  bbox = cnvs.getBoundingClientRect();
+  pxX=e.clientX-bbox.left*(cw/bbox.width);
+  pxY=e.clientY-bbox.top*(ch/bbox.height);
+
+  if (dragging) {
+    vectors[vec2drag].xo += (Math.round(pxX)+0.5-point[0]);
+    vectors[vec2drag].yo += -(Math.round(pxY)+0.5-point[1]);
+    point = [Math.round(pxX)+0.5, Math.round(pxY)+0.5];
+    drawAll();
+  }
+  else {
+    for (let j=0; j<vectors.length; j++) {
+      const isItON = isPointOnLine(vectors[j].points, Math.round(pxX)+0.5, Math.round(pxY)+0.5);
+      if (isItON) {
+        vectors[j].c="black";
+        drawAll();
+        break;
+      }
+      else {
+        vectors[j].c=colors[j];
+        drawAll();
+      }
+    }
+  }
+}
+
+
+
+function drawVector(angle, length) {
+  ctx.beginPath(); ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
+}
+
+function drawAll() {
+  ctx.putImageData(canvasImage,0,0);
+/*
+  if (vectors[0].xo-0.1 <= vectors[1].xo && vectors[1].xo <= vectors[0].xo+0.1 && vectors[0].yo-0.1 <= vectors[1].yo && vectors[1].yo <= vectors[0].yo+0.1) {
+    vectors[vec2drag].c = vec2drag ? "blue" : "red";
+    vec2drag=null;
+    point = null;
+    dragging=false;
+    vectors[0].xo=0, vectors[0].yo=0, vectors[1].xo=0, vectors[1].yo=0;
+  }
+*/
+
+  ctx.lineWidth=2;
+  for (let j=0; j<vectors.length; j++) {
+    ctx.beginPath();
+    ctx.translate(vectors[j].xo+cY, cY-vectors[j].yo);
+    ctx.strokeStyle=vectors[j].c;
+    angle=hafPI-Math.atan2(vectors[j].y, vectors[j].x);
+    length=Math.sqrt(vectors[j].x**2 + vectors[j].y**2);
+    ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
+    ctx.translate(-vectors[j].xo-cY, vectors[j].yo-cY);
+  }
+  ctx.lineWidth=1;
+
+}
+
+cnvs.addEventListener('mouseup', onmouseup);
+cnvs.addEventListener('mousedown', onmousedown);
+cnvs.addEventListener('mousemove', onmousemove);
+
+drawAll();
+}
+
+document.onkeydown = function (e) {
+  if (e.altKey && e.keyCode == 39) {
+    Qnumber += 1;
+    if (Qnumber>Qmax) {Qnumber = 0};
+    eval("display_Q"+Qnumber+"()");}
+  else if (e.altKey && e.keyCode == 37) {
+    Qnumber -= 1;
+    if (Qnumber<0) {Qnumber = Qmax};
+    eval("display_Q"+Qnumber+"()");}
+}
+var Qnumber = 0;
+var Qmax = 1;
+var answers = [];
+for (let j=0; j<=Qmax; j++) {answers.push(null);}
+
+display_Q0();</script>
+</body>
+</html>

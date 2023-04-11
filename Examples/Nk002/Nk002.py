@@ -260,8 +260,8 @@ QGs.append([Q, A, ('Examples', 'Nk002-2'), 'short'])
 
 
 
-flagPreview = True
-flagChoice = False
+flagPreview = False
+flagChoice = True
 flagShuffling = True
 
 STDs={'12345678': 'abc def', '29394959': 'ghe jeee', '59482742': 'jjj ssss'}
