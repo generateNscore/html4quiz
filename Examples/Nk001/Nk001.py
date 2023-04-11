@@ -5,14 +5,17 @@ QGs = []
 playWithNumbers='''var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
 //init();
-if (argsFromMain == null) {argsFromMain=[[500, 1400], [10, 7], ['x', '8', '÷', '3', '=', '6']];}
+if (argsFromMain == null) {argsFromMain=[[500, 1400], [10, 7], ['x', '8', '÷', '3', '=', '6'], 'shuffle'];}
 
 [cnvs.height, cnvs.width]=argsFromMain[0];
 var cw = cnvs.width, ch = cnvs.height, cells=[];
 const cellW=50, [cols, rows]=argsFromMain[1];
 cnvs.height=Math.max(10, rows)*50+40; ch=cnvs.height;
+cnvs.height=(rows+1)*cellW; ch=cnvs.height;
+cnvs.width=(cols+4)*cellW; cw=cnvs.width;
 const yTop=20.5, xLeft=20.5;
 const eqn = argsFromMain[2];
+const shuffling = argsFromMain[3];
 var pxX, pxY, bbox, dragging=false, clickedChar=null;
 
 var clickedValue=null;
@@ -25,13 +28,20 @@ function getRandomInt(min, max) {
 }
 
 var arr = [], r4arr=[];
-var j=0, r;
-while(arr.length < eqn.length){
-  r = getRandomInt(0, cols*rows);
-  if (r4arr.indexOf(r) == -1) {
-    arr.push({c: eqn[j], n: r});
-    r4arr.push(r);
-    j += 1;
+if (shuffling == 'shuffle') {
+  var j=0, r;
+  while(arr.length < eqn.length){
+    r = getRandomInt(0, cols*rows);
+    if (r4arr.indexOf(r) == -1) {
+      arr.push({c: eqn[j], n: r, color:"#000"});
+      r4arr.push(r);
+      j += 1;
+    }
+  }
+}
+else {
+  for (let j=0; j<eqn.length; j++) {
+    arr.push({c: eqn[j], n:j});
   }
 }
 
@@ -58,18 +68,19 @@ function drawBackground() {
     ctx.stroke();
   }
 
-  ctx.beginPath();
-  ctx.shadowColor = "black";
-  ctx.shadowOffsetX = 1;
-  ctx.shadowOffsetY = 1;
-  ctx.shadowBlur = 3;
-  ctx.fillStyle=SubmitBtn.color;
-  ctx.fillRect(SubmitBtn.x-SubmitBtn.w/2,SubmitBtn.y-SubmitBtn.h/2,SubmitBtn.w,SubmitBtn.h);
-  ctx.shadowColor = "transparent";
-  ctx.fillStyle="black"; ctx.font = "28px arial"; ctx.textAlign="center"; 
-  ctx.fillText("Submit", SubmitBtn.x, SubmitBtn.y+10);
-  ctx.closePath();
-
+  if (shuffling == 'shuffle') {
+    ctx.beginPath();
+    ctx.shadowColor = "black";
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 1;
+    ctx.shadowBlur = 3;
+    ctx.fillStyle=SubmitBtn.color;
+    ctx.fillRect(SubmitBtn.x-SubmitBtn.w/2,SubmitBtn.y-SubmitBtn.h/2,SubmitBtn.w,SubmitBtn.h);
+    ctx.shadowColor = "transparent";
+    ctx.fillStyle="black"; ctx.font = "28px arial"; ctx.textAlign="center"; 
+    ctx.fillText("Submit", SubmitBtn.x, SubmitBtn.y+10);
+    ctx.closePath();
+  }
 
   canvasImage=ctx.getImageData(0,0,cw,ch);
 }
@@ -99,9 +110,11 @@ function Submit() {
   addAnswers2Textarea();
 }
 
-cnvs.addEventListener('mouseup', onmouseup);
-cnvs.addEventListener('mousedown', onmousedown);
-cnvs.addEventListener('mousemove', onmousemove);
+if (shuffling == 'shuffle') {
+  cnvs.addEventListener('mouseup', onmouseup);
+  cnvs.addEventListener('mousedown', onmousedown);
+  cnvs.addEventListener('mousemove', onmousemove);
+}
 
 function onmousedown(e) {
   e.preventDefault();
@@ -112,11 +125,12 @@ function onmousedown(e) {
   if (SubmitBtn.x-SubmitBtn.w/2<=pxX && pxX <= SubmitBtn.x+SubmitBtn.w/2 && SubmitBtn.y-SubmitBtn.h/2<=pxY && pxY <= SubmitBtn.y+SubmitBtn.h/2) {Submit();}
 
   if (pxX>20 && pxX<cols*cellW && pxY>20 && pxY<rows*cellW) {
-    clickedValue = getValue()-1;
+    clickedValue = getValue();
     for (let j=0; j<arr.length; j++) {
       if (arr[j].n == clickedValue) {
         dragging=true;
         clickedChar=j;
+        arr[clickedChar].color="#f00";
         break;
       }
     }
@@ -130,6 +144,16 @@ function onmouseup(e) {
   var pxY=e.clientY-bbox.top*(ch/bbox.height);
 
   if (dragging == true) {
+    arr[clickedChar].color="#000";
+
+    ctx.beginPath();
+    ctx.font = "36px arial"; ctx.textAlign="center";
+    var Rem, Quo;
+    Rem = arr[clickedChar].n%cols; Quo = Math.floor((arr[clickedChar].n-Rem)/cols);
+    ctx.fillStyle=arr[clickedChar].color;
+    ctx.fillText(arr[clickedChar].c, Rem*cellW+45, Quo*cellW+60);
+
+    clickedChar=null;
     dragging=false;
   }
 }
@@ -141,7 +165,7 @@ function onmousemove(e) {
   pxY=e.clientY-bbox.top*(ch/bbox.height);
 
   if (dragging == true && pxX>20 && pxX<cols*cellW && pxY>20 && pxY<rows*cellW) {
-    clickedValue = getValue()-1;
+    clickedValue = getValue();
     arr[clickedChar].n=clickedValue;
     drawAll();
   }
@@ -150,17 +174,18 @@ function onmousemove(e) {
 function getValue() {
   let col=Math.floor((pxX-20)/cellW);
   let row=Math.floor((pxY-20)/cellW);
-  return col+row*cols+1;
+  return col+row*cols;
 }
 
 function drawAll() {
   ctx.putImageData(canvasImage,0,0);
 
   ctx.beginPath();
-  ctx.fillStyle="black"; ctx.font = "36px arial"; ctx.textAlign="center";
+  ctx.font = "36px arial"; ctx.textAlign="center";
   var Rem, Quo;
   for (let j=0; j<arr.length; j++) {
     Rem = arr[j].n%cols; Quo = Math.floor((arr[j].n-Rem)/cols);
+    ctx.fillStyle=arr[j].color;
     ctx.fillText(arr[j].c, Rem*cellW+45, Quo*cellW+60);
   }
 }
@@ -172,7 +197,31 @@ figures={'playWithNumbers': playWithNumbers}
 
 QGs=[]
 
+Q=['Find the integer in the box marked with an "X" that completes the division expression below.figure(playWithNumbers)init({%prms2%});']
+
+
+A='''data=[]
+vA=random.choice(range(2,20))
+vB=random.choice(range(1,10))
+op='÷'
+vA *= vB
+vAns=int(vA/vB)
+#answer=[f'{vA}{op}{vB}={vAns}']
+#vStr=list(answer[0])
+#columnsN=len(vStr)+4
+#prms1=[[50, 1400], [columnsN, 1], vStr, 'shuffle']
+
+vStr=list(f'{vA}{op}{vB}={vAns}')
+x=random.choice([item for item in enumerate(vStr) if item[1].isnumeric()])
+vStr[x[0]]='x'
+#answer=[int(x[1])]
+answer=[{'choices': None, 'ans':int(x[1]), 'fn':'variation0_int'}]
+prms2=[[50, 800], [len(vStr),1], vStr, 'null']'''
+
+QGs.append([Q, A, ('Examples', 'Nk001-1'), 'short'])
+
 Q=['Move the numbers and arithmetic signs shown below to complete the resulting equation with no spaces between them. Leading and trailing spaces are allowed. When finished, click the "Submit" button. figure(playWithNumbers)init({%prms1%});']
+
 
 A='''data=[]
 vA=random.choice(range(2,20))
@@ -183,15 +232,15 @@ vAns=int(vA/vB)
 answer=[f'{vA}{op}{vB}={vAns}']
 vStr=list(answer[0])
 columnsN=len(vStr)+4
-prms1=[[500, 1400], [columnsN, 1], vStr]'''
+prms1=[[50, 1400], [columnsN, 1], vStr, 'shuffle']'''
 
-QGs.append([Q, A, ('Examples', 'Ex004'), 'short'])
+QGs.append([Q, A, ('Examples', 'Nk001-2'), 'short'])
 
 flagPreview = False
-flagChoice = False
+flagChoice = True
 flagShuffling = True
 
 STDs={'12345678': 'abc def', '29394959': 'ghe jeee', '59482742': 'jjj ssss'}
-a = hf4q.work('Ex004', 'Example', STDs, QGs, flagPreview, flagChoice, flagShuffling)
+a = hf4q.work('Nk001', 'Example', STDs, QGs, flagPreview, flagChoice, flagShuffling)
 hf4q.mkHTMLs(a, figures)
 a.saveWork()
