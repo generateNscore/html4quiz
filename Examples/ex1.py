@@ -1,4 +1,4 @@
-import htmlfilesforquiz as hf4q
+import html4quiz as hf4q
 
 QGs = []
 Q=['Submit the sum of the two integers {%vA%} and {%vB%}.',
@@ -16,5 +16,5 @@ flagChoice = True
 flagShuffling = False
 figures = {}
 
-a = hf4q.work('checkups1', 'Testing', {'12345678': 'abc def'}, QGs, flagPreview, flagChoice, flagShuffling)
-hf4q.mkHTMLs(a, figures)
+a = h4q.work('checkups1', 'Testing', {'12345678': 'abc def'}, QGs, flagPreview, flagChoice, flagShuffling)
+h4q.mkHTMLs(a, figures)

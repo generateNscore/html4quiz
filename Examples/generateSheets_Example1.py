@@ -1,4 +1,4 @@
-import htmlfilesforquiz as hf4q
+import html4quiz as h4q
 
 clock='''var argsFromMain=null;function init(prms) {argsFromMain=prms;}//init();
 if (argsFromMain == null) {argsFromMain=[300, 10, 10];}const width= argsFromMain[0];cnvs.width=width;cnvs.height=width;ctx.clearRect(0,0, cnvs.width, cnvs.height);var radius = width/2;ctx.translate(radius, radius);radius = radius * 0.90;
@@ -252,5 +252,5 @@ STDs={'12345678': 'oooo'}
 
 iMultipleChoices=False
 
-a=hf4q.work(name, heading, STDs, QGs, True, iMultipleChoices, False)
-hf4q.mkHTMLs(a, figures)
+a=h4q.work(name, heading, STDs, QGs, True, iMultipleChoices, False)
+h4q.mkHTMLs(a, figures)
