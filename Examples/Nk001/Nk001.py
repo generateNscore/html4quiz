@@ -1,8 +1,8 @@
-import htmlfilesforquiz as hf4q
+import html4quiz as h4q
 
 QGs = []
 
-figures={'playWithNumbers': hf4q._common.getFigure('playWithNumbers')}
+figures={'playWithNumbers': h4q._common.getFigure('playWithNumbers')}
 
 QGs=[]
 
@@ -44,6 +44,6 @@ flagChoice = True
 flagShuffling = True
 
 STDs={'12345678': 'abc def', '29394959': 'ghe jeee', '59482742': 'jjj ssss'}
-a = hf4q.work('Nk001', 'Example', STDs, QGs, flagPreview, flagChoice, flagShuffling)
-hf4q.mkHTMLs(a, figures)
+a = h4q.work('Nk001', 'Example', STDs, QGs, flagPreview, flagChoice, flagShuffling)
+h4q.mkHTMLs(a, figures)
 a.saveWork()

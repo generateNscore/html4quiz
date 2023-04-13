@@ -86,7 +86,7 @@ function destroyClickedElement(event) {
 </script>
 <script type="application/javascript">
 function display_Q0() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the integer in the box marked with an "X" that completes the division expression below.</p><div> <div style="float: left"><label class="radiocontainer"> 9<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 6<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 3<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 1<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Move the numbers and arithmetic signs shown below to complete the resulting equation with no spaces between them. Leading and trailing spaces are allowed. When finished, click the "Submit" button. </p>';
 Qnumber = 0;
 setCheckedRadio(0);
 
@@ -96,21 +96,24 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[50, 800], [6, 1], ['x', '0', '÷', '5', '=', '2'], 'null']);
+init([[50, 1400], [10, 1], ['3', '0', '÷', '6', '=', '5'], 'shuffle']);
 
-if (argsFromMain == null) {argsFromMain=[[500, 1400], [10, 7], ['x', '8', '÷', '3', '=', '6'], 'shuffle'];}
+if (argsFromMain == null) {argsFromMain=[[500, 1400], [15, 1], ['x', '8', '÷', '3', '=', '6'], 'shuffle'];}
 
 [cnvs.height, cnvs.width]=argsFromMain[0];
 var cw = cnvs.width, ch = cnvs.height, cells=[];
-const cellW=50, [cols, rows]=argsFromMain[1];
+const cellW=50, hafW=cellW/2, [cols, rows]=argsFromMain[1];
 //cnvs.height=Math.max(10, rows)*50+40; ch=cnvs.height;
 cnvs.height=(rows+1)*cellW; ch=cnvs.height;
 const yTop=20.5, xLeft=20.5;
 const eqn = argsFromMain[2];
 const shuffling = argsFromMain[3];
 var pxX, pxY, bbox, dragging=false, clickedChar=null;
+var canvasImage;
 
 var clickedValue=null;
+var inside;
+
 const SubmitBtn={x:(cols+2)*cellW, y:40, w:140, h:50, color:"#d7d"};
 
 function getRandomInt(min, max) {
@@ -121,12 +124,14 @@ function getRandomInt(min, max) {
 
 var arr = [], r4arr=[];
 if (shuffling == 'shuffle') {
-  var j=0, r;
+  var j=0, cr, c, r;
   while(arr.length < eqn.length){
-    r = getRandomInt(0, cols*rows);
-    if (r4arr.indexOf(r) == -1) {
-      arr.push({c: eqn[j], n: r, color:"black"});
-      r4arr.push(r);
+    cr = getRandomInt(0, cols*rows);
+    if (r4arr.indexOf(cr) == -1) {
+      c = cr%cols; r = Math.floor((cr-c)/cols);
+      //arr.push({c: eqn[j], n: cr, color:"black"});
+      arr.push({c: eqn[j], n: cr, color:"black", x:c*cellW+xLeft, y:r*cellW+yTop});
+      r4arr.push(cr);
       j += 1;
     }
   }
@@ -137,14 +142,12 @@ else {
   }
 }
 
-var canvasImage;
-
 function drawBackground() {
   ctx.clearRect(0,0,cw,ch);
 
   ctx.strokeStyle = "#eee";
   var yBottom=yTop+rows*cellW, x, y;
-  for (let j=0; j<cols+1; j++) {
+  for (let j=0; j<=cols; j++) {
     ctx.beginPath();
     x=xLeft+j*cellW;
     ctx.moveTo(x, yTop);
@@ -152,7 +155,7 @@ function drawBackground() {
     ctx.stroke();
   }
   var xRight=xLeft+cols*cellW
-  for (let j=0; j<rows+1; j++) {
+  for (let j=0; j<=rows; j++) {
     ctx.beginPath();
     y = yTop+j*cellW;
     ctx.moveTo(xLeft, y);
@@ -216,24 +219,15 @@ function onmousedown(e) {
 
   if (SubmitBtn.x-SubmitBtn.w/2<=pxX && pxX <= SubmitBtn.x+SubmitBtn.w/2 && SubmitBtn.y-SubmitBtn.h/2<=pxY && pxY <= SubmitBtn.y+SubmitBtn.h/2) {Submit();}
 
-  if (pxX>20 && pxX<cols*cellW && pxY>20 && pxY<rows*cellW) {
-    clickedValue = getValue();
-    for (let j=0; j<arr.length; j++) {
-      if (arr[j].n == clickedValue) {
+  for (let j=0; j<arr.length; j++) {
+    if (amIinside(arr[j], pxX, pxY)) {
         dragging=true;
         clickedChar=j;
         arr[clickedChar].color="#f00";
-
-        ctx.beginPath();
-        ctx.font = "36px arial"; ctx.textAlign="center";
-        const Rem = arr[clickedChar].n%cols, Quo = Math.floor((arr[clickedChar].n-Rem)/cols);
-        ctx.fillStyle=arr[clickedChar].color;
-        ctx.fillText(arr[clickedChar].c, Rem*cellW+45, Quo*cellW+60);
-
         break;
-      }
     }
   }
+
 }
 
 function onmouseup(e) {
@@ -243,20 +237,18 @@ function onmouseup(e) {
   pxY=e.clientY-bbox.top*(ch/bbox.height);
 
   if (dragging == true) {
-
     arr[clickedChar].color="black";
-
-    ctx.beginPath();
-    ctx.font = "36px arial"; ctx.textAlign="center";
-    const Rem = arr[clickedChar].n%cols, Quo = Math.floor((arr[clickedChar].n-Rem)/cols);
-    ctx.fillStyle=arr[clickedChar].color;
-    ctx.fillText(arr[clickedChar].c, Rem*cellW+45, Quo*cellW+60);
-
+    drawAll();
     clickedChar=null;
-
     dragging=false;
   }
 }
+
+function amIinside(it, x, y) {
+  if (it.x+10 < x && x < it.x+cellW-10 && it.y+10 < y && y < it.y+cellW-10) return true;
+  else return false;
+}
+
 
 function onmousemove(e) {
   e.preventDefault();
@@ -264,12 +256,32 @@ function onmousemove(e) {
   pxX=e.clientX-bbox.left*(cw/bbox.width);
   pxY=e.clientY-bbox.top*(ch/bbox.height);
 
-  if (dragging == true && pxX>20 && pxX<cols*cellW && pxY>20 && pxY<rows*cellW) {
-    clickedValue = getValue();
-    arr[clickedChar].n=clickedValue;
+  if (dragging) {
+    const [row, col] = pxl2RowCol(pxX, pxY);
+    arr[clickedChar].n=col+row*cols;
+    arr[clickedChar].x=col*cellW+xLeft;
+    arr[clickedChar].y=row*cellW+yTop;
     drawAll();
   }
+  else {
+    for (let j=0; j<arr.length; j++) {
+      if (amIinside(arr[j], pxX, pxY)) {
+        arr[j].color = "red";
+        drawAll();
+        break;
+      }
+      else {
+        if (arr[j].color == "red") {
+          arr[j].color="black";
+          drawAll();
+        }
+      }
+    }
+  }
+}
 
+function pxl2RowCol(x, y) {
+  return [Math.floor((y-yTop)/cellW), Math.floor((x-xLeft)/cellW)];
 }
 
 function getValue() {
@@ -282,18 +294,24 @@ function drawAll() {
   ctx.putImageData(canvasImage,0,0);
 
   ctx.font = "36px arial"; ctx.textAlign="center";
-  var Rem, Quo;
   for (let j=0; j<arr.length; j++) {
-    Rem = arr[j].n%cols; Quo = Math.floor((arr[j].n-Rem)/cols);
     ctx.beginPath(); ctx.fillStyle=arr[j].color;
-    ctx.fillText(arr[j].c, Rem*cellW+45, Quo*cellW+60);
+    ctx.fillText(arr[j].c, arr[j].x+hafW, arr[j].y+40);
   }
+/*
+  ctx.font = "16px arial"; ctx.textAlign="center";
+  for (let j=0; j<arr.length; j++) {
+    //Rem = arr[j].n%cols; Quo = Math.floor((arr[j].n-Rem)/cols);
+    ctx.beginPath(); ctx.fillStyle=arr[j].color;
+    ctx.fillText(arr[j].n, arr[j].x+hafW, 15);
+  }
+*/
 }
 
 drawAll();
 }
 function display_Q1() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Move the numbers and arithmetic signs shown below to complete the resulting equation with no spaces between them. Leading and trailing spaces are allowed. When finished, click the "Submit" button. </p>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Find the integer in the box marked with an "X" that completes the division expression below.</p><div> <div style="float: left"><label class="radiocontainer"> 6<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 4<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 9<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 1<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 1;
 setCheckedRadio(1);
 
@@ -303,21 +321,24 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[50, 1400], [10, 1], ['2', '4', '÷', '4', '=', '6'], 'shuffle']);
+init([[50, 800], [7, 1], ['7', '0', '÷', '5', '=', '1', 'x'], 'null']);
 
-if (argsFromMain == null) {argsFromMain=[[500, 1400], [10, 7], ['x', '8', '÷', '3', '=', '6'], 'shuffle'];}
+if (argsFromMain == null) {argsFromMain=[[500, 1400], [15, 1], ['x', '8', '÷', '3', '=', '6'], 'shuffle'];}
 
 [cnvs.height, cnvs.width]=argsFromMain[0];
 var cw = cnvs.width, ch = cnvs.height, cells=[];
-const cellW=50, [cols, rows]=argsFromMain[1];
+const cellW=50, hafW=cellW/2, [cols, rows]=argsFromMain[1];
 //cnvs.height=Math.max(10, rows)*50+40; ch=cnvs.height;
 cnvs.height=(rows+1)*cellW; ch=cnvs.height;
 const yTop=20.5, xLeft=20.5;
 const eqn = argsFromMain[2];
 const shuffling = argsFromMain[3];
 var pxX, pxY, bbox, dragging=false, clickedChar=null;
+var canvasImage;
 
 var clickedValue=null;
+var inside;
+
 const SubmitBtn={x:(cols+2)*cellW, y:40, w:140, h:50, color:"#d7d"};
 
 function getRandomInt(min, max) {
@@ -328,12 +349,14 @@ function getRandomInt(min, max) {
 
 var arr = [], r4arr=[];
 if (shuffling == 'shuffle') {
-  var j=0, r;
+  var j=0, cr, c, r;
   while(arr.length < eqn.length){
-    r = getRandomInt(0, cols*rows);
-    if (r4arr.indexOf(r) == -1) {
-      arr.push({c: eqn[j], n: r, color:"black"});
-      r4arr.push(r);
+    cr = getRandomInt(0, cols*rows);
+    if (r4arr.indexOf(cr) == -1) {
+      c = cr%cols; r = Math.floor((cr-c)/cols);
+      //arr.push({c: eqn[j], n: cr, color:"black"});
+      arr.push({c: eqn[j], n: cr, color:"black", x:c*cellW+xLeft, y:r*cellW+yTop});
+      r4arr.push(cr);
       j += 1;
     }
   }
@@ -344,14 +367,12 @@ else {
   }
 }
 
-var canvasImage;
-
 function drawBackground() {
   ctx.clearRect(0,0,cw,ch);
 
   ctx.strokeStyle = "#eee";
   var yBottom=yTop+rows*cellW, x, y;
-  for (let j=0; j<cols+1; j++) {
+  for (let j=0; j<=cols; j++) {
     ctx.beginPath();
     x=xLeft+j*cellW;
     ctx.moveTo(x, yTop);
@@ -359,7 +380,7 @@ function drawBackground() {
     ctx.stroke();
   }
   var xRight=xLeft+cols*cellW
-  for (let j=0; j<rows+1; j++) {
+  for (let j=0; j<=rows; j++) {
     ctx.beginPath();
     y = yTop+j*cellW;
     ctx.moveTo(xLeft, y);
@@ -423,24 +444,15 @@ function onmousedown(e) {
 
   if (SubmitBtn.x-SubmitBtn.w/2<=pxX && pxX <= SubmitBtn.x+SubmitBtn.w/2 && SubmitBtn.y-SubmitBtn.h/2<=pxY && pxY <= SubmitBtn.y+SubmitBtn.h/2) {Submit();}
 
-  if (pxX>20 && pxX<cols*cellW && pxY>20 && pxY<rows*cellW) {
-    clickedValue = getValue();
-    for (let j=0; j<arr.length; j++) {
-      if (arr[j].n == clickedValue) {
+  for (let j=0; j<arr.length; j++) {
+    if (amIinside(arr[j], pxX, pxY)) {
         dragging=true;
         clickedChar=j;
         arr[clickedChar].color="#f00";
-
-        ctx.beginPath();
-        ctx.font = "36px arial"; ctx.textAlign="center";
-        const Rem = arr[clickedChar].n%cols, Quo = Math.floor((arr[clickedChar].n-Rem)/cols);
-        ctx.fillStyle=arr[clickedChar].color;
-        ctx.fillText(arr[clickedChar].c, Rem*cellW+45, Quo*cellW+60);
-
         break;
-      }
     }
   }
+
 }
 
 function onmouseup(e) {
@@ -450,20 +462,18 @@ function onmouseup(e) {
   pxY=e.clientY-bbox.top*(ch/bbox.height);
 
   if (dragging == true) {
-
     arr[clickedChar].color="black";
-
-    ctx.beginPath();
-    ctx.font = "36px arial"; ctx.textAlign="center";
-    const Rem = arr[clickedChar].n%cols, Quo = Math.floor((arr[clickedChar].n-Rem)/cols);
-    ctx.fillStyle=arr[clickedChar].color;
-    ctx.fillText(arr[clickedChar].c, Rem*cellW+45, Quo*cellW+60);
-
+    drawAll();
     clickedChar=null;
-
     dragging=false;
   }
 }
+
+function amIinside(it, x, y) {
+  if (it.x+10 < x && x < it.x+cellW-10 && it.y+10 < y && y < it.y+cellW-10) return true;
+  else return false;
+}
+
 
 function onmousemove(e) {
   e.preventDefault();
@@ -471,12 +481,32 @@ function onmousemove(e) {
   pxX=e.clientX-bbox.left*(cw/bbox.width);
   pxY=e.clientY-bbox.top*(ch/bbox.height);
 
-  if (dragging == true && pxX>20 && pxX<cols*cellW && pxY>20 && pxY<rows*cellW) {
-    clickedValue = getValue();
-    arr[clickedChar].n=clickedValue;
+  if (dragging) {
+    const [row, col] = pxl2RowCol(pxX, pxY);
+    arr[clickedChar].n=col+row*cols;
+    arr[clickedChar].x=col*cellW+xLeft;
+    arr[clickedChar].y=row*cellW+yTop;
     drawAll();
   }
+  else {
+    for (let j=0; j<arr.length; j++) {
+      if (amIinside(arr[j], pxX, pxY)) {
+        arr[j].color = "red";
+        drawAll();
+        break;
+      }
+      else {
+        if (arr[j].color == "red") {
+          arr[j].color="black";
+          drawAll();
+        }
+      }
+    }
+  }
+}
 
+function pxl2RowCol(x, y) {
+  return [Math.floor((y-yTop)/cellW), Math.floor((x-xLeft)/cellW)];
 }
 
 function getValue() {
@@ -489,12 +519,18 @@ function drawAll() {
   ctx.putImageData(canvasImage,0,0);
 
   ctx.font = "36px arial"; ctx.textAlign="center";
-  var Rem, Quo;
   for (let j=0; j<arr.length; j++) {
-    Rem = arr[j].n%cols; Quo = Math.floor((arr[j].n-Rem)/cols);
     ctx.beginPath(); ctx.fillStyle=arr[j].color;
-    ctx.fillText(arr[j].c, Rem*cellW+45, Quo*cellW+60);
+    ctx.fillText(arr[j].c, arr[j].x+hafW, arr[j].y+40);
   }
+/*
+  ctx.font = "16px arial"; ctx.textAlign="center";
+  for (let j=0; j<arr.length; j++) {
+    //Rem = arr[j].n%cols; Quo = Math.floor((arr[j].n-Rem)/cols);
+    ctx.beginPath(); ctx.fillStyle=arr[j].color;
+    ctx.fillText(arr[j].n, arr[j].x+hafW, 15);
+  }
+*/
 }
 
 drawAll();
