@@ -29,7 +29,7 @@ prms=choices[indx]'''
 
 QGs.append([Q, A, ('Examples', 'Ex001'), 'short'])
 
-flagPreview = True
+flagPreview = False
 flagChoice = False
 flagShuffling = True
 

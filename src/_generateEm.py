@@ -139,7 +139,8 @@ class work():
                         xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
                         out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
                         tmp.append(out)
-                    elif isinstance(out[1], dict) and 'choices' in out[1] and isinstance(out[1]['ans'], (int, float)):
+                    #elif isinstance(out[1], dict) and 'choices' in out[1] and isinstance(out[1]['ans'], (int, float)):
+                    elif isinstance(out[1], dict) and 'choices' in out[1]:
                         xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
                         out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
                         tmp.append(out)
@@ -168,14 +169,14 @@ class work():
 ##
 ##                    tmp.append(out)
 
-
                     if self.QGs[j][-1] == 'python':
                         tmp.append(out)
                     elif isinstance(out[1], (int, float)) and self.Flag4Choice:
                         xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
                         out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
                         tmp.append(out)
-                    elif isinstance(out[1], dict) and 'choices' in out[1] and isinstance(out[1]['ans'], (int, float)):
+                    #elif isinstance(out[1], dict) and 'choices' in out[1] and isinstance(out[1]['ans'], (int, float)):
+                    elif isinstance(out[1], dict) and 'choices' in out[1]: # and isinstance(out[1]['ans'], (int, float)):
                         xtra, ansChoice, ans, choicesUsed = generateChoices(out[1])
                         out = (out[0]+xtra, int(ansChoice), out[-1], (origAnswer, choicesUsed))
                         tmp.append(out)
@@ -191,7 +192,7 @@ class work():
 
     def saveWork(self):
         if self.Flag4Preview:
-            print("It is checkup mode. Set the Flag4Preview to False and try again")
+            print("'Preview' flag is True, ignoring calls to saveWork(). Change the Flag4Preview to False and try again")
             return
         
         if not os.path.exists(os.path.join('.', f'{self.Name}')):

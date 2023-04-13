@@ -1,7 +1,7 @@
 Example Answers Ex001
 SID: 12345678
-	1: {'choices': ['EQ% x^2 + 3x - 3 %EQ', 'EQ% x^2 + 4x + 2 %EQ', 'EQ% x^2 + 4x - 2 %EQ', 'EQ% x^2 - x + 3 %EQ', 'EQ% x^2 - x + 4 %EQ', 'EQ% x^2 - 2x + 4 %EQ'], 'ans': 'EQ% x^2 - x + 3 %EQ'}
+	1: 5
 SID: 29394959
-	1: {'choices': ['EQ% x^2 - 4x - 1 %EQ', 'EQ% x^2 + 4x  %EQ', 'EQ% x^2 + 3x + 4 %EQ', 'EQ% x^2 - 3x + 3 %EQ', 'EQ% x^2 - 3x - 4 %EQ', 'EQ% x^2 - 2x + 4 %EQ'], 'ans': 'EQ% x^2 - 4x - 1 %EQ'}
+	1: 5
 SID: 59482742
-	1: {'choices': ['EQ% x^2 - 4x  %EQ', 'EQ% x^2 + x - 4 %EQ', 'EQ% x^2 + 2x  %EQ', 'EQ% x^2 + x + 4 %EQ', 'EQ% x^2 + x - 1 %EQ', 'EQ% x^2 - 4x + 4 %EQ'], 'ans': 'EQ% x^2 + x + 4 %EQ'}
+	1: 1
