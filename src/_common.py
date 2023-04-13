@@ -1,5 +1,8 @@
-import math, random, re
+import math, random, re, json
+from urllib.request import urlopen
 
+def getFigure(file: str):
+    return json.loads(urlopen(f'https://generateNscore.github.io/htmlfilesforquiz/JS/{file}.json').read())
 
 def round2MSF(a):
     if not a or (isinstance(a, int) and abs(a)<1000) : return a
