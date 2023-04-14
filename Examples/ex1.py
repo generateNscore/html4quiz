@@ -1,4 +1,4 @@
-import html4quiz as hf4q
+import html4quiz as h4q
 
 QGs = []
 Q=['Submit the sum of the two integers {%vA%} and {%vB%}.',
@@ -11,8 +11,8 @@ answer=[vA+vB, vB-vA]'''
 
 QGs.append([Q, A, ('chap1', 'qg1'), 'short'])
 
-flagPreview = False
-flagChoice = True
+flagPreview = True
+flagChoice = False
 flagShuffling = False
 figures = {}
 
