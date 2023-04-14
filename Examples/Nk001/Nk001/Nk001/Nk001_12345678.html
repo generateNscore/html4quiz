@@ -86,7 +86,7 @@ function destroyClickedElement(event) {
 </script>
 <script type="application/javascript">
 function display_Q0() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Move the numbers and arithmetic signs shown below to complete the resulting equation with no spaces between them. Leading and trailing spaces are allowed. When finished, click the "Submit" button. </p>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the integer in the box marked with an "X" that completes the division expression below.</p><div> <div style="float: left"><label class="radiocontainer"> 9<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 1<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 0<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 5<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 0;
 setCheckedRadio(0);
 
@@ -96,7 +96,7 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[50, 1400], [10, 1], ['3', '0', '÷', '6', '=', '5'], 'shuffle']);
+init([[50, 800], [6, 1], ['x', '2', '÷', '3', '=', '4'], 'null']);
 
 if (argsFromMain == null) {argsFromMain=[[500, 1400], [15, 1], ['x', '8', '÷', '3', '=', '6'], 'shuffle'];}
 
@@ -311,7 +311,7 @@ function drawAll() {
 drawAll();
 }
 function display_Q1() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Find the integer in the box marked with an "X" that completes the division expression below.</p><div> <div style="float: left"><label class="radiocontainer"> 6<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 4<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 9<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 1<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Move the numbers and arithmetic signs shown below to complete the resulting equation with no spaces between them. Leading and trailing spaces are allowed. When finished, click the "Submit" button. </p>';
 Qnumber = 1;
 setCheckedRadio(1);
 
@@ -321,7 +321,7 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[50, 800], [7, 1], ['7', '0', '÷', '5', '=', '1', 'x'], 'null']);
+init([[50, 1400], [11, 1], ['3', '8', '÷', '2', '=', '1', '9'], 'shuffle']);
 
 if (argsFromMain == null) {argsFromMain=[[500, 1400], [15, 1], ['x', '8', '÷', '3', '=', '6'], 'shuffle'];}
 
