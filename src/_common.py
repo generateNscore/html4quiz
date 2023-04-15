@@ -1,8 +1,20 @@
 import math, random, re, json
 from urllib.request import urlopen
+import urllib
 
 def getFigure(file: str):
-    return json.loads(urlopen(f'https://generateNscore.github.io/html4quiz/JS/{file}.json').read())
+    try:
+        return json.loads(urlopen(f'https://generateNscore.github.io/html4quiz/JS/{file}.json').read())
+    except urllib.error.HTTPError:
+        return 'HTTP Error 404: Not Found'
+
+
+def getResource(src: str):
+    try:
+        return json.loads(urlopen(f'https://generateNscore.github.io/html4quiz/res/{src}.json').read())
+    except urllib.error.HTTPError:
+        return 'HTTP Error 404: Not Found'
+
 
 def round2MSF(a):
     if not a or (isinstance(a, int) and abs(a)<1000) : return a

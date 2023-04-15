@@ -2,7 +2,7 @@ import html4quiz as h4q
 
 QGs = []
 
-figures={'add2Vectors': h4q._common.getFigure('add2Vectors')}
+figures={'add2Vectors': h4q._common.getResource('add2Vectors')}
 
 QGs=[]
 
@@ -42,6 +42,6 @@ flagChoice = True
 flagShuffling = True
 
 STDs={'12345678': 'abc def', '29394959': 'ghe jeee', '59482742': 'jjj ssss'}
-a = h4q.work('Nk002', 'Example', STDs, QGs, flagPreview, flagChoice, flagShuffling)
-h4q.mkHTMLs(a, figures)
-a.saveWork()
+a = h4q.work('Nk002', 'Example', STDs, QGs, flagPreview, flagChoice, flagShuffling, figures)
+#h4q.mkHTMLs(a, figures)
+#a.saveWork()

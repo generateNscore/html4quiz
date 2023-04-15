@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Example Ex00212345678 abc def</title>
+<title>Testing examples8 8</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style>
 .prePrompt {float: left; margin: 20px   0px 20px 10px; padding: 10px   5px 10px   5px; background: #efc; font-family: bold Courier New; font-size: 14px; line-height: 0.5 em; width: 30px;              text-align: left; border: 1px solid powderblue; border-right: none; color: #700;}
@@ -23,7 +23,7 @@
 </style>
 </head>
 <body style="word-break:keep-all; display: block; font-family: malgun;  font-size: 18px;">
-<center><h4>Example Ex00212345678 abc def</h4></center><ul style="font-size: 14px">
+<center><h4>Testing examples8 8</h4></center><ul style="font-size: 14px">
 <li>객관식 질문의 답은 정수로 답하시오. For multiple-choice questions, answer with an integer.</li>
 <li>단답형 질문의 숫자 답은, 가장 중요한 3개의 숫자로 반올림하시오. For numerical answer to short questions, round to the three most significant digits.</li>
 <li>요청에 따라 숫자를 문자열로 제출해는 경우, 양쪽에 따옴표를 붙이시오. If you are asked to submit a number as a string, put quotes around it.</li></ul>
@@ -32,9 +32,13 @@
 <tr>
 <td ><button onclick="saveTextAsFile()" class="btn2">Save<br>Answers<br>to File</button></td>
 <td><textarea id="inputTextToSave" cols="155" rows="5" style="font-family: malgun;  font-size: 16px; padding: 5px  0px  5px  20px; ">
-나, abc def은(는) 위 내용을 읽고 아래 답을 직접 작성했음을 확인합니다. I, abc def, confirm that I read the notes above and wrote the answer myself below.
+나, 8은(는) 위 내용을 읽고 아래 답을 직접 작성했음을 확인합니다. I, 8, confirm that I read the notes above and wrote the answer myself below.
 --------------------------------------------------------------------------------------------------------------------
-1: </textarea></td></tr></tbody></table><input type="button" onclick="javascript:display_Q0();" class= "btn" value="Q-1"  />
+1: 2
+2: 4
+3: -4</textarea></td></tr></tbody></table><input type="button" onclick="javascript:display_Q0();" class= "btn" value="Q-1"  />
+<input type="button" onclick="javascript:display_Q1();" class= "btn" value="Q-2"  />
+<input type="button" onclick="javascript:display_Q2();" class= "btn" value="Q-3"  />
 <hr> <div id="Qs" style="word-break:keep-all; display: block; font-family: malgun; font-size: 18px; margin: 0px 10px 0px 10px; padding: 0px 5px 0px 5px;"></div>
 <canvas id="canvas" width="800" height="0"></canvas>
 <script type="text/javascript">
@@ -42,7 +46,7 @@ function saveTextAsFile() {
   var textToSave = document.getElementById("inputTextToSave").value;
   var textToSaveAsBlob = new Blob([textToSave], {type:"text/plain"});
   var textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
-  var fileNameToSaveAs = "Ex00212345678.txt"
+  var fileNameToSaveAs = "examples8.txt"
 
   var downloadLink = document.createElement("a");
   downloadLink.download = fileNameToSaveAs;
@@ -84,63 +88,49 @@ function destroyClickedElement(event) {
 </script>
 <script type="application/javascript">
 function display_Q0() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> What is the sum of the two fill areas of the color drawn below?<br><br></p><div> <div style="float: left"><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  \\frac {3} {5} "/><input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  \\frac {2} {3} "/><input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  \\frac {13} {20} "/><input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  \\frac {9} {14} "/><input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> What clock shows the time of  2:30?</p><div> <div style="float: left"><label class="radiocontainer"> <div id="cnvs0"></div><input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label></div><div style="float: left"><label class="radiocontainer"> <div id="cnvs1"></div><input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label></div><div style="float: left"><label class="radiocontainer"> <div id="cnvs2"></div><input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label></div><div style="float: left"><label class="radiocontainer"> <div id="cnvs3"></div><input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label></div><div style="float: left"><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label></div><div style="float: left"><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 0;
 setCheckedRadio(0);
 
 var cnvs = document.getElementById("canvas");
 var ctx = cnvs.getContext("2d");
 ctx.clearRect(0,0, cnvs.width, cnvs.height);
+cnvs.height=0;
+function clockF(cnvsName, prms) {
+var cnvs = document.createElement("canvas");
+div = document.getElementById(cnvsName);
+div.appendChild(cnvs);
+var ctx = cnvs.getContext("2d");
+var argsFromMain=null;function init(prms) {argsFromMain=prms;}init(prms);
+if (argsFromMain == null) {argsFromMain=[300, 10, 10];}const width= argsFromMain[0];cnvs.width=width;cnvs.height=width;ctx.clearRect(0,0, cnvs.width, cnvs.height);var radius = width/2;ctx.translate(radius, radius);radius = radius * 0.90;
+function drawFace(ctx, radius) {  ctx.beginPath();  ctx.arc(0, 0, radius, 0, 2*Math.PI);  ctx.fillStyle = "white";  ctx.fill();  ctx.strokeStyle = "black";  ctx.stroke();}function drawNumbers(ctx, radius) {  var ang;  var num;  ctx.font = radius*0.15 + "px arial";  ctx.textBaseline="middle";  ctx.fillStyle = "black";  ctx.textAlign="center";  for(num = 1; num < 13; num++){    ang = num * Math.PI / 6;    ctx.rotate(ang);    ctx.translate(0, -radius*0.85);    ctx.rotate(-ang);    ctx.fillText(num.toString(), 0, 0);    ctx.rotate(ang);    ctx.translate(0, radius*0.85);    ctx.rotate(-ang);  }}
+function drawHand(ctx, pos, length, width) {    ctx.beginPath();    ctx.lineWidth = width;    ctx.lineCap = "round";    ctx.moveTo(0, 0);    ctx.rotate(pos);    ctx.lineTo(0,-length);    ctx.stroke();    ctx.rotate(-pos);}
+drawFace(ctx, radius);drawNumbers(ctx, radius);var hour=argsFromMain[1];var minute=argsFromMain[2];hour=hour%12;hour=hour*Math.PI/6 + minute*Math.PI/(6*60);drawHand(ctx, hour, radius*0.5, radius*0.04);minute=(minute*Math.PI/30);drawHand(ctx, minute, radius*0.8, radius*0.02);}clockF("cnvs0", [200, 5, 35]);clockF("cnvs1", [200, 2, 30]);clockF("cnvs2", [200, 1, 20]);clockF("cnvs3", [200, 5, 55]);
+}
+function display_Q1() {
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> What time is the clock shown below?</p><div> <div style="float: left"><label class="radiocontainer"> 7:25<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 2:30<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 9:40<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 6:35<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+Qnumber = 1;
+setCheckedRadio(1);
+
+var cnvs = document.getElementById("canvas");
+var ctx = cnvs.getContext("2d");
+ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
-var argsFromMain=null;
-function init(prms) {
-  argsFromMain=prms;
+var argsFromMain=null;function init(prms) {argsFromMain=prms;}init([300, 6, 35]);
+if (argsFromMain == null) {argsFromMain=[300, 10, 10];}const width= argsFromMain[0];cnvs.width=width;cnvs.height=width;ctx.clearRect(0,0, cnvs.width, cnvs.height);var radius = width/2;ctx.translate(radius, radius);radius = radius * 0.90;
+function drawFace(ctx, radius) {  ctx.beginPath();  ctx.arc(0, 0, radius, 0, 2*Math.PI);  ctx.fillStyle = "white";  ctx.fill();  ctx.strokeStyle = "black";  ctx.stroke();}function drawNumbers(ctx, radius) {  var ang;  var num;  ctx.font = radius*0.15 + "px arial";  ctx.textBaseline="middle";  ctx.fillStyle = "black";  ctx.textAlign="center";  for(num = 1; num < 13; num++){    ang = num * Math.PI / 6;    ctx.rotate(ang);    ctx.translate(0, -radius*0.85);    ctx.rotate(-ang);    ctx.fillText(num.toString(), 0, 0);    ctx.rotate(ang);    ctx.translate(0, radius*0.85);    ctx.rotate(-ang);  }}
+function drawHand(ctx, pos, length, width) {    ctx.beginPath();    ctx.lineWidth = width;    ctx.lineCap = "round";    ctx.moveTo(0, 0);    ctx.rotate(pos);    ctx.lineTo(0,-length);    ctx.stroke();    ctx.rotate(-pos);}
+drawFace(ctx, radius);drawNumbers(ctx, radius);var hour=argsFromMain[1];var minute=argsFromMain[2];hour=hour%12;hour=hour*Math.PI/6 + minute*Math.PI/(6*60);drawHand(ctx, hour, radius*0.5, radius*0.04);minute=(minute*Math.PI/30);drawHand(ctx, minute, radius*0.8, radius*0.02);
 }
-init([300, [1, 8, 1, 8]]);
-if (argsFromMain == null) {
-  argsFromMain=[200, [1, 2, 2, 3]];
-}
-var height = argsFromMain[0];
-cnvs.height = height;
-cnvs.width=2*height;
-var radius = cnvs.height/4;
-var cY = cnvs.height/2;
-var cX = cnvs.width/2;
-var radius = cY-20;
-ctx.beginPath();
-ctx.font="normal 60px Arial";
-ctx.fillStyle="black";
-ctx.fillText("+", cX-17, cY+20);
-var angle = 2*Math.PI/argsFromMain[1][1];
-for (let j=0; j<argsFromMain[1][1]; j++) {
-  ctx.beginPath();
-  ctx.moveTo(cX-radius-20, cY);
-  ctx.strokeStyle="black";
-  if (j<argsFromMain[1][0]) {
-    ctx.fillStyle="#ed7";
-  }
-  else {
-    ctx.fillStyle="white";
-  }
-  ctx.arc(cX-radius-20, cY, radius, j*angle, (j+1)*angle);
-  ctx.lineTo(cX-radius-20, cY);  ctx.fill();  ctx.stroke();
-}
-angle = 2*Math.PI/argsFromMain[1][3];
-for (let j=0; j<argsFromMain[1][3]; j++) {
-  ctx.beginPath();
-  ctx.moveTo(cX+radius+20, cY);
-  ctx.strokeStyle="black";
-  if (j<argsFromMain[1][2]) {
-    ctx.fillStyle="#7ed";
-  }
-  else {
-    ctx.fillStyle="white";
-  }
-  ctx.arc(cX+radius+20, cY, radius, j*angle, (j+1)*angle);
-  ctx.lineTo(cX+radius+20, cY);
-  ctx.fill();
-  ctx.stroke();
-}
+function display_Q2() {
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>3.</strong></font> Subtract 24 from 20 and submit your answer.</p>';
+Qnumber = 2;
+setCheckedRadio(2);
+
+var cnvs = document.getElementById("canvas");
+var ctx = cnvs.getContext("2d");
+ctx.clearRect(0,0, cnvs.width, cnvs.height);
+cnvs.height=0;
 }
 
 document.onkeydown = function (e) {
@@ -154,7 +144,7 @@ document.onkeydown = function (e) {
     eval("display_Q"+Qnumber+"()");}
 }
 var Qnumber = 0;
-var Qmax = 0;
+var Qmax = 2;
 var answers = [];
 for (let j=0; j<=Qmax; j++) {answers.push(null);}
 

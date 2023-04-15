@@ -10,6 +10,9 @@ class scoreAnswerFiles:
         self.path4files=path4files
         if workPickle and os.path.exists(workPickle):
             self.initWork(workPickle)
+        else:
+            print('We need the pickle fie')
+            return
 
     def initWork(self, workPickle):
         self.work=pickle.load(open(workPickle,'rb'))
@@ -19,7 +22,27 @@ class scoreAnswerFiles:
         self.nProblems=len(self.QGs)
 
         if self.path4files and os.path.exists(self.path4files):
-            self.getAnswersFromFiles()
+            try:
+                self.getAnswersFromFiles()
+            except Exception as err:
+                print(err, '@ Ln25')
+                return
+
+            try:
+                self.scoreThem()
+            except Exception as err:
+                print(err, '@ Ln31')
+                return
+
+            try:
+                self.saveResults()
+            except Exception as err:
+                print(err, '@ Ln37')
+                return
+        else:
+            print("we need the folder that students' answer text files are saved")
+            return
+                
             
 
     def getAnswersFromFiles(self):
@@ -86,8 +109,10 @@ class scoreAnswerFiles:
             if hdr.isnumeric() and int(hdr)<=self.nProblems and hdrValue:
                 try:
                     answersFromTxt[int(hdr)-1]=eval(hdrValue)
+                except SyntaxError: # 2023-04-14 added
+                    answersFromTxt[int(hdr)-1]=hdrValue.strip() # 2023-04-14 added
                 except Exception as err:
-                    answersFromTxt[int(hdr)-1]=f'Error({err}) in ({hdrValue})'
+                    answersFromTxt[int(hdr)-1]=f'Error({err}) in ({hdrValue}) @ Ln90'
 
         return answersFromTxt
 
@@ -135,7 +160,7 @@ class scoreAnswerFiles:
                         v['ox'][nChecked] = self.compare(wv, ans2match['ret'])
 
                 elif isinstance(ans2match, str) and ans2match.startswith('code:'):
-                    if checkAnswerCode(wv, ans2match.split('code:')[-1]): # 반환값: T/F
+                    if self.checkAnswerCode(wv, ans2match.split('code:')[-1]): # 반환값: T/F 2023-04-15 self.추
                         v['ox'][nChecked] = 'O'
                     else:
                         v['ox'][nChecked] = 'Xincorrect arb. value'
@@ -240,8 +265,18 @@ class scoreAnswerFiles:
                     #print(round2MSF(A), round2MSF(B))
                     return 'Xrounding error'
             else:
+                #print(f'학생답: ++{A}++', type(A)) # 2023-04-14 added
+                #print(f'정답: ++{B}++', type(B)) # 2023-04-14 added
                 return 'Xwrong Answer'
         else:
             return 'Xwrong type'
 
+
+    @staticmethod
+    def checkAnswerCode(StudentValue, ansCode):  # 2023-04-14 added incomplete
+        try:
+            tmp=eval(ansCode)
+        except Exception:
+            tmp=False
+        return tmp
 

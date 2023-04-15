@@ -84,7 +84,7 @@ function destroyClickedElement(event) {
 </script>
 <script type="application/javascript">
 function display_Q0() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> What is the correct function shown below?<br><br></p><div> <div style="float: left"><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  x^2 - 4x - 2 "/><input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  x^2 - x - 2 "/><input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  x^2 - x  "/><input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  x^2 - 3x + 3 "/><input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> What is the correct function shown below?<br><br></p><div> <div style="float: left"><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  x^2 + x - 2 "/><input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  x^2 + 2x - 3 "/><input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  x^2 - 2x + 3 "/><input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> <img src="http://latex.codecogs.com/png.latex?\\dpi{130}  x^2 + 4x  "/><input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 0;
 setCheckedRadio(0);
 
@@ -97,7 +97,7 @@ var argsFromMain=null;
 function init(prms) {
     argsFromMain=prms;
 }
-init([300, [1, -1, 0], [-5, 5]]);
+init([300, [1, 2, -3], [-5, 5]]);
 if (argsFromMain == null) {
     argsFromMain=[200, [1, 1, -2], [-5, 5]];
 }
