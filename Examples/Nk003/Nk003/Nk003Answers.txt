@@ -1,0 +1,13 @@
+Example Answers Nk003
+SID: 12345678
+	1: 2
+	2: rendezvous
+	3: 4
+SID: 29394959
+	1: 2
+	2: 2
+	3: bureaucrat
+SID: 59482742
+	1: 3
+	2: perforate
+	3: 3
