@@ -253,4 +253,4 @@ STDs={'12345678': 'oooo'}
 iMultipleChoices=False
 
 a=h4q.work(name, heading, STDs, QGs, True, iMultipleChoices, False, figures)
-#h4q.mkHTMLs(a, figures)
+#h4q.mkHTMLs(a, figures) do not need since 0.0.22

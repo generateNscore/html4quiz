@@ -17,4 +17,4 @@ flagShuffling = False
 figures = {}
 
 a = h4q.work('checkups1', 'Testing', {'12345678': 'abc def'}, QGs, flagPreview, flagChoice, flagShuffling)
-#h4q.mkHTMLs(a, figures)
+#h4q.mkHTMLs(a, figures) do not need since 0.0.22
