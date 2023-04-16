@@ -16,7 +16,8 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 <li>Mathematical equations in LaTeX format can be included in both question texts and choices.</li>
 <li>Figures can be included in both question text and choices.</li>
 <li>Question text, mathematical equations, and figures are all randomly selected for each question sheet in a controlled manner.</li>
-<li>To increase your creativity, user-defined functions can be easily added.</li>
+<li>The randomness is acquired by executing the answer string, actually Python script, that is provided with question text.</li>
+<li>To increase your creativity, user-defined functions can be easily added for the answer string.</li>
 <li>With some Javascript script coding, questions that require students to "play" for a period of time to answer correctly can be created.</li>
 </ul>
 
