@@ -41,6 +41,10 @@ html4quiz is a package that helps you generates question sheets with as many HTM
 
 ## Changes
 
+<li>Version 0.0.23</li>
+<ul><li>Testing for README.md link to GitHub.</li>
+</ul>
+<br>
 <li>Version 0.0.22</li>
 <ul><li>Added "res" folder to GitHub for the Javascript scripts of figures and additional data saved in JSON format.</li>
 <li>Added a "getResource()" function to the package to access the data.</li>
