@@ -35,6 +35,7 @@ vAns=int(vA/vB)
 answer=[f'{vA}{op}{vB}={vAns}']
 vStr=list(answer[0])
 columnsN=len(vStr)+4
+random.shuffle(vStr)
 prms1=[[50, 1400], [columnsN, 1], vStr, 'shuffle']'''
 
 QGs.append([Q, A, ('Examples', 'Nk001-2'), 'short'])
