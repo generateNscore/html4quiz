@@ -85,7 +85,7 @@ answer = [{'choices':None, 'ans':vA+vB, 'fn': 'variation0_int'}]
 
 
 ## Example shots
-
+<ul>
 <li>A short-answer question</li>
 <img src="https://generateNscore.github.io/html4quiz/img/example1-3.png">
 <li>A multiple-choice question</li>
@@ -98,3 +98,4 @@ answer = [{'choices':None, 'ans':vA+vB, 'fn': 'variation0_int'}]
 <img src="https://generateNscore.github.io/html4quiz/img/example1-4.png">
 <li>A question with equation and with multiple-choice figures</li>
 <img src="https://generateNscore.github.io/html4quiz/img/example1-5.png">
+</ul>
