@@ -4,11 +4,6 @@
 
 html4quiz is a package that helps you generate question sheets with as many HTML files as you want and grade answers from text files submitted by students.
 
-## Help
-<ul>
-<li><a href="https://github.com/generateNscore/html4quiz/wiki">Documentation</a></li>
-</ul>
-
 ## Features
 <ul>
 <li>Everything is on your local PC, grows with your creativity, and you own them all.</li>
@@ -28,7 +23,6 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 ## Where to get it
 <ul>
 <li>The source code is currently hosted on GitHub at: <a href="https://github.com/generateNscore/html4quiz">https://github.com/generateNscore/html4quiz</a></li>
-<br>
 
 <pre lang=sh>pip install html4quiz</pre>
 
@@ -41,7 +35,7 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 
 ## Changes
 
-<li>Version 0.0.23</li>
+<li>Version 0.0.25</li>
 <ul><li>Testing for README.md link to GitHub.</li>
 </ul>
 <br>
