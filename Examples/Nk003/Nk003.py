@@ -5,7 +5,7 @@ resources['WordWizardVocabList6-8']=h4q._common.getResource('WordWizardVocabList
 
 QGs = []
 
-Q=['Find the word that means the following (Vocaburary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"{%wordmeaning%}"</font></p>']
+Q=['Find the word that means the following (Vocabulary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"{%wordmeaning%}"</font></p>']
 
 A='''global typeInQ, wordL
 data=[]
@@ -21,7 +21,7 @@ answer=[{'choices': wordChoices, 'ans': word}]'''
 QGs.append([Q, A, ('Examples', 'Nk001-1'), 'short'])
 
 
-Q=['Move the alphabet shown below to complete a word that means the following. When finished, click the "Submit" button. (Vocaburary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"{%wordmeaning%}"</font></p>figure(playWithNumbers)init({%prms%});']
+Q=['Move the alphabet shown below to complete a word that means the following. When finished, click the "Submit" button. (Vocabulary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"{%wordmeaning%}"</font></p>figure(playWithNumbers)init({%prms%});']
 
 A='''global typeInQ, wordL
 data=[]
@@ -39,7 +39,7 @@ prms=[[50, 1400], [columnsN, 1], vStr, 'shuffle']'''
 
 QGs.append([Q, A, ('Examples', 'Nk001-2'), 'short'])
 
-Q=['Find the correct meaning for the word <font color="#00f">"{%word[0]%}"</font>. (Vocaburary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>)']
+Q=['Find the correct meaning for the word <font color="#00f">"{%word[0]%}"</font>. (Vocabulary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>)']
 
 A='''global typeInQ, wordL
 data=[]

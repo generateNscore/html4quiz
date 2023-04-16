@@ -88,7 +88,7 @@ function destroyClickedElement(event) {
 </script>
 <script type="application/javascript">
 function display_Q0() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the correct meaning for the word <font color="#00f">"nurture"</font>. (Vocaburary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>)</p><div> <div style="float: left"><label class="radiocontainer"> Easily deceived or duped.<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> To nourish or sustain.<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> To make a hole through.<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> Wasteful; extravagant.<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the correct meaning for the word <font color="#00f">"accumulate"</font>. (Vocabulary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>)</p><div> <div style="float: left"><label class="radiocontainer"> A large disastrous fire.<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> To heap up in a mass.<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> Given to complaining; whining.<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> Or of relating to childhood.<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 0;
 setCheckedRadio(0);
 
@@ -98,19 +98,9 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=0;
 }
 function display_Q1() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Find the word that means the following (Vocaburary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"Habitually un-talkative."</font></p></p><div> <div style="float: left"><label class="radiocontainer"> nebulous<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> taciturn<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> ravenous<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> luscious<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Move the alphabet shown below to complete a word that means the following. When finished, click the "Submit" button. (Vocabulary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"To flow or fall in drops or in a thin stream."</font></p></p>';
 Qnumber = 1;
 setCheckedRadio(1);
-
-var cnvs = document.getElementById("canvas");
-var ctx = cnvs.getContext("2d");
-ctx.clearRect(0,0, cnvs.width, cnvs.height);
-cnvs.height=0;
-}
-function display_Q2() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>3.</strong></font> Move the alphabet shown below to complete a word that means the following. When finished, click the "Submit" button. (Vocaburary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"A member of the whole body of non elected government officials."</font></p></p>';
-Qnumber = 2;
-setCheckedRadio(2);
 
 var cnvs = document.getElementById("canvas");
 var ctx = cnvs.getContext("2d");
@@ -118,7 +108,7 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[50, 1400], [13, 1], ['a', 'u', 'b', 'r', 'a', 't', 'c', 'e', 'u', 'r'], 'shuffle']);
+init([[50, 1400], [10, 1], ['l', 'c', 't', 'r', 'k', 'e', 'i'], 'shuffle']);
 
 if (argsFromMain == null) {argsFromMain=[[500, 1400], [15, 1], ['x', '8', '÷', '3', '=', '6'], 'shuffle'];}
 //if (argsFromMain == null) {argsFromMain=[[500, 1400], [6, 1], ['x', '8', '÷', '3', '=', '6'], 'null'];}
@@ -345,6 +335,16 @@ function drawAll() {
 }
 
 drawAll();
+}
+function display_Q2() {
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>3.</strong></font> Find the word that means the following (Vocabulary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"The quality or state of being one that is likely or worthy to gain a post, position, or distinction."</font></p></p><div> <div style="float: left"><label class="radiocontainer"> insolence<input type="radio" name="Q2" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> nutrition<input type="radio" name="Q2" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> adversary<input type="radio" name="Q2" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> candidacy<input type="radio" name="Q2" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q2" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q2" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+Qnumber = 2;
+setCheckedRadio(2);
+
+var cnvs = document.getElementById("canvas");
+var ctx = cnvs.getContext("2d");
+ctx.clearRect(0,0, cnvs.width, cnvs.height);
+cnvs.height=0;
 }
 
 document.onkeydown = function (e) {

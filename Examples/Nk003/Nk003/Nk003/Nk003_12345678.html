@@ -88,19 +88,9 @@ function destroyClickedElement(event) {
 </script>
 <script type="application/javascript">
 function display_Q0() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the correct meaning for the word <font color="#00f">"logorrhea"</font>. (Vocaburary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>)</p><div> <div style="float: left"><label class="radiocontainer"> Belonging to neither side.<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> Excessive use of words.<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> Having a pleasant odor.<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> A trip or tour.<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Move the alphabet shown below to complete a word that means the following. When finished, click the "Submit" button. (Vocabulary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"To rouse to impatience or anger."</font></p></p>';
 Qnumber = 0;
 setCheckedRadio(0);
-
-var cnvs = document.getElementById("canvas");
-var ctx = cnvs.getContext("2d");
-ctx.clearRect(0,0, cnvs.width, cnvs.height);
-cnvs.height=0;
-}
-function display_Q1() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Move the alphabet shown below to complete a word that means the following. When finished, click the "Submit" button. (Vocaburary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"A meeting at an appointed place and time."</font></p></p>';
-Qnumber = 1;
-setCheckedRadio(1);
 
 var cnvs = document.getElementById("canvas");
 var ctx = cnvs.getContext("2d");
@@ -108,7 +98,7 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[50, 1400], [13, 1], ['v', 'z', 'o', 'n', 'd', 'r', 'e', 's', 'e', 'u'], 'shuffle']);
+init([[50, 1400], [11, 1], ['i', 'a', 'i', 't', 'e', 't', 'r', 'r'], 'shuffle']);
 
 if (argsFromMain == null) {argsFromMain=[[500, 1400], [15, 1], ['x', '8', '÷', '3', '=', '6'], 'shuffle'];}
 //if (argsFromMain == null) {argsFromMain=[[500, 1400], [6, 1], ['x', '8', '÷', '3', '=', '6'], 'null'];}
@@ -336,8 +326,18 @@ function drawAll() {
 
 drawAll();
 }
+function display_Q1() {
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Find the word that means the following (Vocabulary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"Cleared from accusation or blame."</font></p></p><div> <div style="float: left"><label class="radiocontainer"> neutralize<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> illustrate<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> exaggerate<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> exonerated<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+Qnumber = 1;
+setCheckedRadio(1);
+
+var cnvs = document.getElementById("canvas");
+var ctx = cnvs.getContext("2d");
+ctx.clearRect(0,0, cnvs.width, cnvs.height);
+cnvs.height=0;
+}
 function display_Q2() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>3.</strong></font> Find the word that means the following (Vocaburary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>):<p><font color="#00f">"Located or placed directly across from something else or from each other."</font></p></p><div> <div style="float: left"><label class="radiocontainer"> ravenous<input type="radio" name="Q2" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> adjacent<input type="radio" name="Q2" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> nebulous<input type="radio" name="Q2" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> opposite<input type="radio" name="Q2" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q2" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q2" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>3.</strong></font> Find the correct meaning for the word <font color="#00f">"sensory"</font>. (Vocabulary source: <a href="https://fefonline.org/coe/WordWizardVocabList6-8.pdf">WordWizardVocabList6-8</a>)</p><div> <div style="float: left"><label class="radiocontainer"> Defect, flaw.<input type="radio" name="Q2" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> Loud and hoarse; noisy.<input type="radio" name="Q2" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> A driving or impelling force.<input type="radio" name="Q2" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> Of or relating to the senses.<input type="radio" name="Q2" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q2" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q2" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 2;
 setCheckedRadio(2);
 
