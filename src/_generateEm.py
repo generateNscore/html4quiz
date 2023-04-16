@@ -6,7 +6,7 @@ from .makeChoices import generateChoices
 class work():
     def __init__(self, name: str ='Preview', heading: str='Example', STDs: dict={'12345678': '홍 길동(abc def)'},
                  QGs: list=[], flagPreview: bool=True, flagChoice: bool=False, flagShuffling: bool=False,
-                 resources: dict={}):
+                 resources: dict={}, flagPrevious: bool=False):
         self.Name=name
         self.Heading=heading
         self.STDs=STDs
@@ -17,7 +17,19 @@ class work():
         #self.Flag4Answer = True
         self.Sheets={}
         self.resources = resources
-        
+        self.Flag4Previous=flagPrevious  # 2023-04-16 0.026
+
+        self.prevWork=None  # 2023-04-16 0.026
+        if self.Flag4Previous:
+            fn=os.path.join('.',f'{self.Name}',f'{self.Name}Work.pickle')
+            if os.path.exists(fn):
+                self.prevWork=pickle.load(open(fn,'rb'))
+                if any([self.prevWork.STDs != self.STDs, self.prevWork.QGs != self.QGs,
+                        self.prevWork.Flag4Choice != self.Flag4Choice,
+                        self.prevWork.Flag4Shuffling != self.Flag4Shuffling]):
+                    self.prevWork=None
+
+
         if self.QGs and self.STDs:
             self.initializeWork()
             self.makeSheets()
@@ -55,15 +67,30 @@ class work():
             if '12345678' in self.STDs and self.STDs['12345678'] == '홍 길동(abc def)':
                 print('STDs is not ready for question sheets')
                 return
-            
-            indices=list(range(len(self.QGs)))
-            for std in self.STDs.keys():
-                self.Sheets[std]={'orders':indices.copy(),
-                                  'seed':random.sample(range(10001,100000), len(self.QGs))}
 
-            if self.Flag4Shuffling:
-                for v in self.Sheets.values():
-                    random.shuffle(v['orders'])
+##            indices=list(range(len(self.QGs)))  2023-04-16 0.026
+##            for std in self.STDs.keys():
+##                self.Sheets[std]={'orders':indices.copy(),
+##                                  'seed':random.sample(range(10001,100000), len(self.QGs))}
+##
+##            if self.Flag4Shuffling:
+##                for v in self.Sheets.values():
+##                    random.shuffle(v['orders'])
+
+            if self.prevWork:
+                for std in self.STDs.keys():
+                    self.Sheets[std]={'orders': self.prevWork.Sheets[std]['orders'],
+                                      'seed': self.prevWork.Sheets[std]['seed']}
+            else:
+                indices=list(range(len(self.QGs)))
+                for std in self.STDs.keys():
+                    self.Sheets[std]={'orders':indices.copy(),
+                                      'seed':random.sample(range(10001,100000), len(self.QGs))}
+
+                if self.Flag4Shuffling:
+                    for v in self.Sheets.values():
+                        random.shuffle(v['orders'])
+
 
 
     def makeSheets(self):
@@ -182,7 +209,6 @@ class work():
 
         if '<!--' in strQ:
             indx=strQ.index('<!--')
-            print(indx)
             strQ = strQ[:indx]
 
         if '{%' in strQ and '%}' in strQ:
@@ -193,10 +219,11 @@ class work():
                     return f'<font color="#dd0000"><bold>Error</bold></font>::질문 #{indxJ+1}에 들어있는 변수-{string}....{err}', None, None, None
 
         if dataA:
-            if strQ.rstrip().endswith('</pre>'):
-                strQ += '<p><b>DATA:</b><br>'+'<br>'.join(f'{v}' for v in dataA)+'</p>'
-            else:
-                strQ += '<p><b>DATA:</b><br>'+'<br>'.join(f'{v}' for v in dataA)+'</p>'
+##            if strQ.rstrip().endswith('</pre>'):
+##                strQ += '<p><b>DATA:</b><br>'+'<br>'.join(f'{v}' for v in dataA)+'</p>'
+##            else:
+##                strQ += '<p><b>DATA:</b><br>'+'<br>'.join(f'{v}' for v in dataA)+'</p>'
+            strQ += '<pre><b>DATA:</b><br>'+'<br>'.join(f'{v}' for v in dataA)+'</pre>'
 
         return strQ, answers[indxJ], indxJ, qType
 
