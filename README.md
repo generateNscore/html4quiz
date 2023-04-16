@@ -2,7 +2,7 @@
 
 ## What is it?
 
-html4quiz is a package that helps you generates question sheets with as many HTML files as you want and allows you to grade answers from text files submitted by students.
+html4quiz is a package that helps you generate question sheets with as many HTML files as you want and grade answers from text files submitted by students.
 
 ## Help
 <ul>
