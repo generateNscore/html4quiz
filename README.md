@@ -22,11 +22,11 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 </ul>
 
 ## Where to get it
-<ul>
-<li>The source code is currently hosted on GitHub at: <a href="https://github.com/generateNscore/html4quiz">https://github.com/generateNscore/html4quiz</a></li>
 
 <pre lang=sh>pip install html4quiz</pre>
 
+<ul>
+<li>The source code is currently hosted on GitHub at: <a href="https://github.com/generateNscore/html4quiz">https://github.com/generateNscore/html4quiz</a></li>
 </ul>
 
 
@@ -35,7 +35,7 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 
 
 ## Changes
-
+<ul>
 <li>Version 0.0.25</li>
 <ul><li>Testing for README.md link to GitHub.</li>
 </ul>
@@ -81,7 +81,7 @@ answer = [{'choices':None, 'ans':vA+vB, 'fn': 'variation0_int'}]
 ```
 
 <li>This is about <a href="https://github.com/generateNscore/html4quiz/wiki#2-specifying-method-of-converting-a-short-answer-to-a-set-of-choices">Specifying method of convering short-answer to a set of choices.</a></li></ul>
-
+</ul>
 
 
 ## Example shots
