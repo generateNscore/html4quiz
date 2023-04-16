@@ -16,7 +16,7 @@ while len(vectors)<2:
   
 #vectors = [[random.choice(range(-5,6)), random.choice(range(-5,6)),random.choice(range(-3,4)), random.choice(range(-3,4))] for _ in range(2)]
 answer=[  sum(vec[0] for vec in vectors) ]
-prms=[[10, 40], vectors, 'off']'''
+prms=[[20, 20], vectors, 'off']'''
 
 QGs.append([Q, A, ('Examples', 'Nk002-1'), 'short'])
 
