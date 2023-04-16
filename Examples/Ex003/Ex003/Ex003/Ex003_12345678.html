@@ -75,7 +75,7 @@ function handleClick(myRadio) {
 function setCheckedRadio(q) {
   var radios = document.getElementsByName('Q'+q.toString());
   //for (let j=0; j<radios.length; j++) {radios[j].removeAttribute("checked");}
-  if (radios.length > 0 && answers[q] != null) {radios[answers[q]-1].setAttribute("checked", true);}
+  if (radios.length > 0 && answers[q] != null && Number.isInteger(answers[q]) ) {radios[answers[q]-1].setAttribute("checked", true);}
 }
 
 function destroyClickedElement(event) {
@@ -84,7 +84,7 @@ function destroyClickedElement(event) {
 </script>
 <script type="application/javascript">
 function display_Q0() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the integer in the blank that completes the division expression below.</p><div> <div style="float: left"><label class="radiocontainer"> 9<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 5<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 1<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 7<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the integer in the blank that completes the division expression below.</p>';
 Qnumber = 0;
 setCheckedRadio(0);
 
@@ -97,7 +97,7 @@ var argsFromMain=null;
 function init(prms) {
   argsFromMain=prms;
 }
-init([[50, 800], ['9', '0', '÷', 'x', '=', '1', '8']]);
+init([[50, 800], ['2', '5', '÷', '5', '=', 'x']]);
 if (argsFromMain == null) {
   argsFromMain=[[50,1000], ['x', '8', '÷', '3', '=', '6']];
 }
