@@ -86,7 +86,7 @@ function destroyClickedElement(event) {
 </script>
 <script type="application/javascript">
 function display_Q0() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the y component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> 9<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 7<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 3<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 8<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the y component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> 7<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 6<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 2<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 1<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 0;
 setCheckedRadio(0);
 
@@ -96,7 +96,7 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[20, 20], [[-1, -2, -2, 1], [-3, 5, -1, -2]], 'off']);
+init([[20, 20], [[-3, 4, 4, 3], [1, 2, 3, 0]], 'off']);
 //if (argsFromMain == null) {argsFromMain=[[300, 1400], [[2, 0], [0, 3]]];}
 if (argsFromMain == null) {argsFromMain=[[20, 20], [[2, 0, -2,-1], [0, 3, 1, 3]], 'off'];}
 //[cnvs.height, cnvs.width]=argsFromMain[0];
@@ -141,7 +141,7 @@ else {
   }
 
   for (let j=0; j<vectors.length; j++) {
-    var points=[], ratio, xVo=v2pxl(vectors[j].xo, 'x'), yVo=v2pxl(vectors[j].yo,'y');
+    var points=[], ratio, xVo=v2pxl(vectors[j].xo, 'x')-0.5, yVo=v2pxl(vectors[j].yo,'y')-0.5;
 
     if (Math.abs(vectors[j].x) > Math.abs(vectors[j].y)) {
       ratio = vectors[j].y/vectors[j].x;
@@ -167,7 +167,7 @@ else {
   }
 }
 
-//console.log(vectors);
+console.log(vectors);
 var y, angle, length, canvasImage;
 
 function drawBackground() {
@@ -253,12 +253,12 @@ function onmousedown(e) {
 
 
   for (let j=0; j<vectors.length; j++) {
-    const isItON = isPointOnLine(vectors[j].points, Math.round(pxX)+0.5, Math.round(pxY)+0.5);
+    const isItON = isPointOnLine(vectors[j].points, Math.round(pxX), Math.round(pxY));
     if (isItON) {
        dragging=true;
        vec2drag=j;
        vectors[j].c="black";
-       point = [Math.round(pxX)+0.5, Math.round(pxY)+0.5];
+       point = [Math.round(pxX), Math.round(pxY)];
        drawAll();
        break;
     }
@@ -273,20 +273,20 @@ function onmousemove(e) {
   pxY=e.clientY-bbox.top*(ch/bbox.height);
 
   if (dragging) {
-    const dx=(Math.round(pxX)+0.5-point[0]);
-    const dy=(Math.round(pxY)+0.5-point[1]);
+    const dx=(Math.round(pxX)-point[0]);
+    const dy=(Math.round(pxY)-point[1]);
     vectors[vec2drag].xo += dx/rA;
     vectors[vec2drag].yo -= dy/rA;
     for (let j=0; j<vectors[vec2drag].points.length; j++) {
        vectors[vec2drag].points[j][0] += dx;
        vectors[vec2drag].points[j][1] += dy;
     }
-    point = [Math.round(pxX)+0.5, Math.round(pxY)+0.5];
+    point = [Math.round(pxX), Math.round(pxY)];
     drawAll();
   }
   else {
     for (let j=0; j<vectors.length; j++) {
-      const isItON = isPointOnLine(vectors[j].points, Math.round(pxX)+0.5, Math.round(pxY)+0.5);
+      const isItON = isPointOnLine(vectors[j].points, Math.round(pxX), Math.round(pxY));
       if (isItON) {
         vectors[j].c="black";
         drawAll();
@@ -373,7 +373,7 @@ cnvs.addEventListener('mousemove', onmousemove);
 drawAll();
 }
 function display_Q1() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Find the x component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> -2<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> -5<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> -3<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> -9<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Find the x component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> 2<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 8<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 9<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 7<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 1;
 setCheckedRadio(1);
 
@@ -383,7 +383,7 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[20, 20], [[4, 5, 0, -9], [-6, 0, -4, -6]], 'off']);
+init([[20, 20], [[5, 10, 6, -10], [3, -8, 5, -9]], 'off']);
 //if (argsFromMain == null) {argsFromMain=[[300, 1400], [[2, 0], [0, 3]]];}
 if (argsFromMain == null) {argsFromMain=[[20, 20], [[2, 0, -2,-1], [0, 3, 1, 3]], 'off'];}
 //[cnvs.height, cnvs.width]=argsFromMain[0];
@@ -428,7 +428,7 @@ else {
   }
 
   for (let j=0; j<vectors.length; j++) {
-    var points=[], ratio, xVo=v2pxl(vectors[j].xo, 'x'), yVo=v2pxl(vectors[j].yo,'y');
+    var points=[], ratio, xVo=v2pxl(vectors[j].xo, 'x')-0.5, yVo=v2pxl(vectors[j].yo,'y')-0.5;
 
     if (Math.abs(vectors[j].x) > Math.abs(vectors[j].y)) {
       ratio = vectors[j].y/vectors[j].x;
@@ -454,7 +454,7 @@ else {
   }
 }
 
-//console.log(vectors);
+console.log(vectors);
 var y, angle, length, canvasImage;
 
 function drawBackground() {
@@ -540,12 +540,12 @@ function onmousedown(e) {
 
 
   for (let j=0; j<vectors.length; j++) {
-    const isItON = isPointOnLine(vectors[j].points, Math.round(pxX)+0.5, Math.round(pxY)+0.5);
+    const isItON = isPointOnLine(vectors[j].points, Math.round(pxX), Math.round(pxY));
     if (isItON) {
        dragging=true;
        vec2drag=j;
        vectors[j].c="black";
-       point = [Math.round(pxX)+0.5, Math.round(pxY)+0.5];
+       point = [Math.round(pxX), Math.round(pxY)];
        drawAll();
        break;
     }
@@ -560,20 +560,20 @@ function onmousemove(e) {
   pxY=e.clientY-bbox.top*(ch/bbox.height);
 
   if (dragging) {
-    const dx=(Math.round(pxX)+0.5-point[0]);
-    const dy=(Math.round(pxY)+0.5-point[1]);
+    const dx=(Math.round(pxX)-point[0]);
+    const dy=(Math.round(pxY)-point[1]);
     vectors[vec2drag].xo += dx/rA;
     vectors[vec2drag].yo -= dy/rA;
     for (let j=0; j<vectors[vec2drag].points.length; j++) {
        vectors[vec2drag].points[j][0] += dx;
        vectors[vec2drag].points[j][1] += dy;
     }
-    point = [Math.round(pxX)+0.5, Math.round(pxY)+0.5];
+    point = [Math.round(pxX), Math.round(pxY)];
     drawAll();
   }
   else {
     for (let j=0; j<vectors.length; j++) {
-      const isItON = isPointOnLine(vectors[j].points, Math.round(pxX)+0.5, Math.round(pxY)+0.5);
+      const isItON = isPointOnLine(vectors[j].points, Math.round(pxX), Math.round(pxY));
       if (isItON) {
         vectors[j].c="black";
         drawAll();
