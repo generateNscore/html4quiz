@@ -22,7 +22,7 @@ html4quiz is a package that helps you generates question sheets with as many HTM
 <li>Figures can be included in both question text and choices.</li>
 <li>Question text, mathematical equations, and figures are all randomly selected for each question sheet in a controlled manner.</li>
 <li>To increase your creativity, user-defined functions can be easily added.</li>
-<li>Questions that require student to "play" some time to answer correctly can be created.</li>
+<li>With some Javascript script coding, questions that require students to "play" for a period of time to answer correctly can be created.</li>
 </ul>
 
 ## Where to get it
