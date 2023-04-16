@@ -86,7 +86,7 @@ function destroyClickedElement(event) {
 </script>
 <script type="application/javascript">
 function display_Q0() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the x component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> -22<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 13<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> -7<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> -32<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the y component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> 9<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 2<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 4<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 0<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 0;
 setCheckedRadio(0);
 
@@ -96,7 +96,7 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[20, 20], [[8, -4, 10, -2], [-10, -1, -2, 7]], 'off']);
+init([[20, 20], [[2, 4, -4, 4], [5, 5, -1, 3]], 'off']);
 //if (argsFromMain == null) {argsFromMain=[[300, 1400], [[2, 0], [0, 3]]];}
 if (argsFromMain == null) {argsFromMain=[[20, 20], [[2, 0, -2,-1], [0, 3, 1, 3]], 'off'];}
 //[cnvs.height, cnvs.width]=argsFromMain[0];
@@ -137,38 +137,40 @@ else {
     if (vec.length == 2) {vectors.push({x: vec[0], y: vec[1], xo: randInt(-3,4), yo: randInt(-3,4), c: colors[j], points: null});}
     else {vectors.push({x: vec[0], y: vec[1], xo: vec[2], yo: vec[3], c: colors[j], points: null});}
   }
-}
 
-for (let j=0; j<vectors.length; j++) {
-  var points=[], ratio, xVo=v2pxl(vectors[j].xo, 'x'), yVo=v2pxl(vectors[j].yo,'y');
+  for (let j=0; j<vectors.length; j++) {
+    var points=[], ratio, xVo=v2pxl(vectors[j].xo, 'x'), yVo=v2pxl(vectors[j].yo,'y');
 
-  if (Math.abs(vectors[j].x) > Math.abs(vectors[j].y)) {
-    ratio = vectors[j].y/vectors[j].x;
-    if (vectors[j].x > 0) {
-      for (let x=xVo; x<=v2pxl(vectors[j].x+vectors[j].xo, 'x'); x++) {points.push([x, yVo-(x-xVo)*ratio]);}
+    if (Math.abs(vectors[j].x) > Math.abs(vectors[j].y)) {
+      ratio = vectors[j].y/vectors[j].x;
+      if (vectors[j].x > 0) {
+        for (let x=xVo; x<=v2pxl(vectors[j].x+vectors[j].xo, 'x'); x++) {points.push([x, yVo-(x-xVo)*ratio]);}
+      }
+      else {
+        for (let x=xVo; x>=v2pxl(vectors[j].x+vectors[j].xo, 'x'); x--) {points.push([x, yVo-(x-xVo)*ratio]);}
+      }
+      points.push('x');
     }
     else {
-      for (let x=xVo; x>=v2pxl(vectors[j].x+vectors[j].xo, 'x'); x--) {points.push([x, yVo-(x-xVo)*ratio]);}
+      ratio = vectors[j].x/vectors[j].y;
+      if (vectors[j].y < 0) {
+        for (let y=yVo; y<=v2pxl(vectors[j].y+vectors[j].yo,'y'); y++) {points.push([xVo+(yVo-y)*ratio, y]);}
+      }
+      else {
+        for (let y=yVo; y>=v2pxl(vectors[j].y+vectors[j].yo,'y'); y--) {points.push([xVo+(yVo-y)*ratio, y]);}
+      }
+      points.push('y');
     }
-    points.push('x');
+    vectors[j].points=points;
   }
-  else {
-    ratio = vectors[j].x/vectors[j].y;
-    if (vectors[j].y < 0) {
-      for (let y=yVo; y<=v2pxl(vectors[j].y+vectors[j].yo,'y'); y++) {points.push([xVo+(yVo-y)*ratio, y]);}
-    }
-    else {
-      for (let y=yVo; y>=v2pxl(vectors[j].y+vectors[j].yo,'y'); y--) {points.push([xVo+(yVo-y)*ratio, y]);}
-    }
-    points.push('y');
-  }
-  vectors[j].points=points;
 }
 
 //console.log(vectors);
 var y, angle, length, canvasImage;
 
 function drawBackground() {
+  ctx.clearRect(0,0, window.innerWidth, window.innerHeight);
+
   ctx.fillStyle="black"; ctx.font = "12px Arial";  ctx.textAlign="center";
   for (j=0; j<=jB; j++) {
     y = yo+j*rA;
@@ -359,8 +361,6 @@ function drawAll() {
     ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
     ctx.translate(-v2pxl(sumVec.xo, 'x'), -v2pxl(sumVec.yo,'y'));
   }
-
-
 
   answers[Qnumber]={figure:"yes", prm: vectors};
 }
@@ -372,7 +372,7 @@ cnvs.addEventListener('mousemove', onmousemove);
 drawAll();
 }
 function display_Q1() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Find the y component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> 6<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 8<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 9<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 5<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Find the x component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> -32<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> -8<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> -2<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> -512<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 1;
 setCheckedRadio(1);
 
@@ -382,7 +382,7 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[20, 20], [[6, 1, 4, 1], [-5, -1, 2, 0]], 'off']);
+init([[20, 20], [[0, -10, -1, -5], [-8, -6, 4, -5]], 'off']);
 //if (argsFromMain == null) {argsFromMain=[[300, 1400], [[2, 0], [0, 3]]];}
 if (argsFromMain == null) {argsFromMain=[[20, 20], [[2, 0, -2,-1], [0, 3, 1, 3]], 'off'];}
 //[cnvs.height, cnvs.width]=argsFromMain[0];
@@ -423,38 +423,40 @@ else {
     if (vec.length == 2) {vectors.push({x: vec[0], y: vec[1], xo: randInt(-3,4), yo: randInt(-3,4), c: colors[j], points: null});}
     else {vectors.push({x: vec[0], y: vec[1], xo: vec[2], yo: vec[3], c: colors[j], points: null});}
   }
-}
 
-for (let j=0; j<vectors.length; j++) {
-  var points=[], ratio, xVo=v2pxl(vectors[j].xo, 'x'), yVo=v2pxl(vectors[j].yo,'y');
+  for (let j=0; j<vectors.length; j++) {
+    var points=[], ratio, xVo=v2pxl(vectors[j].xo, 'x'), yVo=v2pxl(vectors[j].yo,'y');
 
-  if (Math.abs(vectors[j].x) > Math.abs(vectors[j].y)) {
-    ratio = vectors[j].y/vectors[j].x;
-    if (vectors[j].x > 0) {
-      for (let x=xVo; x<=v2pxl(vectors[j].x+vectors[j].xo, 'x'); x++) {points.push([x, yVo-(x-xVo)*ratio]);}
+    if (Math.abs(vectors[j].x) > Math.abs(vectors[j].y)) {
+      ratio = vectors[j].y/vectors[j].x;
+      if (vectors[j].x > 0) {
+        for (let x=xVo; x<=v2pxl(vectors[j].x+vectors[j].xo, 'x'); x++) {points.push([x, yVo-(x-xVo)*ratio]);}
+      }
+      else {
+        for (let x=xVo; x>=v2pxl(vectors[j].x+vectors[j].xo, 'x'); x--) {points.push([x, yVo-(x-xVo)*ratio]);}
+      }
+      points.push('x');
     }
     else {
-      for (let x=xVo; x>=v2pxl(vectors[j].x+vectors[j].xo, 'x'); x--) {points.push([x, yVo-(x-xVo)*ratio]);}
+      ratio = vectors[j].x/vectors[j].y;
+      if (vectors[j].y < 0) {
+        for (let y=yVo; y<=v2pxl(vectors[j].y+vectors[j].yo,'y'); y++) {points.push([xVo+(yVo-y)*ratio, y]);}
+      }
+      else {
+        for (let y=yVo; y>=v2pxl(vectors[j].y+vectors[j].yo,'y'); y--) {points.push([xVo+(yVo-y)*ratio, y]);}
+      }
+      points.push('y');
     }
-    points.push('x');
+    vectors[j].points=points;
   }
-  else {
-    ratio = vectors[j].x/vectors[j].y;
-    if (vectors[j].y < 0) {
-      for (let y=yVo; y<=v2pxl(vectors[j].y+vectors[j].yo,'y'); y++) {points.push([xVo+(yVo-y)*ratio, y]);}
-    }
-    else {
-      for (let y=yVo; y>=v2pxl(vectors[j].y+vectors[j].yo,'y'); y--) {points.push([xVo+(yVo-y)*ratio, y]);}
-    }
-    points.push('y');
-  }
-  vectors[j].points=points;
 }
 
 //console.log(vectors);
 var y, angle, length, canvasImage;
 
 function drawBackground() {
+  ctx.clearRect(0,0, window.innerWidth, window.innerHeight);
+
   ctx.fillStyle="black"; ctx.font = "12px Arial";  ctx.textAlign="center";
   for (j=0; j<=jB; j++) {
     y = yo+j*rA;
@@ -645,8 +647,6 @@ function drawAll() {
     ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
     ctx.translate(-v2pxl(sumVec.xo, 'x'), -v2pxl(sumVec.yo,'y'));
   }
-
-
 
   answers[Qnumber]={figure:"yes", prm: vectors};
 }
