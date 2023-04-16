@@ -86,7 +86,7 @@ function destroyClickedElement(event) {
 </script>
 <script type="application/javascript">
 function display_Q0() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the x component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> 18<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 12<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 14<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 15<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the y component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> -5<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> -35<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> -15<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> -25<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 0;
 setCheckedRadio(0);
 
@@ -96,7 +96,7 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[20, 20], [[9, -8, -8, 1], [5, -8, 5, -5]], 'off']);
+init([[20, 20], [[3, -6, -2, 1], [6, 1, -4, 3]], 'off']);
 //if (argsFromMain == null) {argsFromMain=[[300, 1400], [[2, 0], [0, 3]]];}
 if (argsFromMain == null) {argsFromMain=[[20, 20], [[2, 0, -2,-1], [0, 3, 1, 3]], 'off'];}
 //[cnvs.height, cnvs.width]=argsFromMain[0];
@@ -107,6 +107,8 @@ var pxX, pxY, bbox, dragging=false, vec2drag=null, point=null;
 const hafA=rA/2, yo=20.5, yB=yo+jB*rA, jC=jB/2, cY=yo+rA*jC, hafPI=Math.PI/2;
 cnvs.height = yB+10, cnvs.width = yB+20;
 const ch=cnvs.height, cw=cnvs.width;
+ctx.clearRect(0,0,cw,ch);
+
 const btn=argsFromMain[2];
 var SubmitBtn=null;
 
@@ -169,8 +171,7 @@ else {
 var y, angle, length, canvasImage;
 
 function drawBackground() {
-  ctx.clearRect(0,0, window.innerWidth, window.innerHeight);
-
+  ctx.clearRect(0,0,cw,ch);
   ctx.fillStyle="black"; ctx.font = "12px Arial";  ctx.textAlign="center";
   for (j=0; j<=jB; j++) {
     y = yo+j*rA;
@@ -372,7 +373,7 @@ cnvs.addEventListener('mousemove', onmousemove);
 drawAll();
 }
 function display_Q1() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Find the y component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> 0<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 4<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 1<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 6<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Find the x component of the sum of 2 vectors shown in red and in green below. </p><div> <div style="float: left"><label class="radiocontainer"> -9<input type="radio" name="Q1" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> -3<input type="radio" name="Q1" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> -5<input type="radio" name="Q1" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> -2<input type="radio" name="Q1" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q1" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
 Qnumber = 1;
 setCheckedRadio(1);
 
@@ -382,7 +383,7 @@ ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
 var argsFromMain=null;
 function init(prms) {argsFromMain=prms;}
-init([[20, 20], [[4, 2, 3, -3], [-5, -1, -3, -1]], 'off']);
+init([[20, 20], [[-5, 1, -6, 3], [3, -10, -2, -8]], 'off']);
 //if (argsFromMain == null) {argsFromMain=[[300, 1400], [[2, 0], [0, 3]]];}
 if (argsFromMain == null) {argsFromMain=[[20, 20], [[2, 0, -2,-1], [0, 3, 1, 3]], 'off'];}
 //[cnvs.height, cnvs.width]=argsFromMain[0];
@@ -393,6 +394,8 @@ var pxX, pxY, bbox, dragging=false, vec2drag=null, point=null;
 const hafA=rA/2, yo=20.5, yB=yo+jB*rA, jC=jB/2, cY=yo+rA*jC, hafPI=Math.PI/2;
 cnvs.height = yB+10, cnvs.width = yB+20;
 const ch=cnvs.height, cw=cnvs.width;
+ctx.clearRect(0,0,cw,ch);
+
 const btn=argsFromMain[2];
 var SubmitBtn=null;
 
@@ -455,8 +458,7 @@ else {
 var y, angle, length, canvasImage;
 
 function drawBackground() {
-  ctx.clearRect(0,0, window.innerWidth, window.innerHeight);
-
+  ctx.clearRect(0,0,cw,ch);
   ctx.fillStyle="black"; ctx.font = "12px Arial";  ctx.textAlign="center";
   for (j=0; j<=jB; j++) {
     y = yo+j*rA;
