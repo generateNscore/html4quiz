@@ -125,7 +125,7 @@ function v2pxl(v, xORy) {
   else {return cY+rA*v;}
 }
 
-const colors={0:"red", 1:"green", 2:"blue", 3:"#ff0", 4: "#f0f", 5:"#0ff"};
+const colors={0:"black", 1:"black", 2:"blue", 3:"#ff0", 4: "#f0f", 5:"#0ff"};
 
 var vectors;
 if (typeof answers[Qnumber] ==="object" && answers[Qnumber] != null && answers[Qnumber].hasOwnProperty("figure") && answers[Qnumber].hasOwnProperty("prm")) {
@@ -136,8 +136,8 @@ else {
   for (let j=0; j<argsFromMain[1].length; j++) {
     const vec = [randInt(-6,7), randInt(-6,7), randInt(-3,4), randInt(-3,4)];
 
-    if (vec.length == 2) {vectors.push({x: vec[0], y: vec[1], xo: randInt(-3,4), yo: randInt(-3,4), c: colors[j], points: null});}
-    else {vectors.push({x: vec[0], y: vec[1], xo: vec[2], yo: vec[3], c: colors[j], points: null});}
+    if (vec.length == 2) {vectors.push({x: vec[0], y: vec[1], xo: randInt(-3,4), yo: randInt(-3,4), c: "black", points: null});}
+    else {vectors.push({x: vec[0], y: vec[1], xo: vec[2], yo: vec[3], c: "black", points: null});}
   }
 
   for (let j=0; j<vectors.length; j++) {
@@ -236,7 +236,7 @@ function isPointOnLine(points, x,y) {
 }
 
 function onmouseup(e) {
-  vectors[vec2drag].c = colors[vec2drag];
+  vectors[vec2drag].c = "black";
   dragging=false;
   vec2drag=null;
   point = null;
@@ -257,7 +257,7 @@ function onmousedown(e) {
     if (isItON) {
        dragging=true;
        vec2drag=j;
-       vectors[j].c="black";
+       vectors[j].c="red";
        point = [Math.round(pxX), Math.round(pxY)];
        drawAll();
        break;
@@ -293,7 +293,7 @@ function onmousemove(e) {
         break;
       }
       else {
-        vectors[j].c=colors[j];
+        vectors[j].c="red";
         drawAll();
       }
     }
@@ -313,7 +313,7 @@ function drawAll() {
   for (let j=0; j<vectors.length; j++) {
     ctx.beginPath();
     ctx.translate(v2pxl(vectors[j].xo, 'x'), v2pxl(vectors[j].yo,'y'));
-    ctx.strokeStyle=vectors[j].c;
+    ctx.strokeStyle="black";
     //angle=hafPI-Math.atan2(vectors[j].y, vectors[j].x);
     //angle=Math.atan2(vectors[j].y, vectors[j].x);
     angle=Math.atan2(vectors[j].x, vectors[j].y);
@@ -327,10 +327,10 @@ function drawAll() {
 
   if (vectors[0].xo-0.1 <= vectors[1].xo && vectors[1].xo <= vectors[0].xo+0.1 && vectors[0].yo-0.1 <= vectors[1].yo && vectors[1].yo <= vectors[0].yo+0.1) {
     const sumVec = {x: vectors[0].x+vectors[1].x, y: vectors[0].y+vectors[1].y, xo: vectors[0].xo, yo: vectors[0].yo};
-    console.log(sumVec);
+    //console.log(sumVec);
     ctx.beginPath();
     ctx.translate(v2pxl(sumVec.xo, 'x'), v2pxl(sumVec.yo,'y'));
-    ctx.strokeStyle="black";
+    ctx.strokeStyle="red";
     angle=Math.atan2(sumVec.x, sumVec.y);
     length=rA*Math.sqrt(sumVec.x**2 + sumVec.y**2);
     ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
@@ -340,10 +340,10 @@ function drawAll() {
   if (vectors[0].xo-0.1 <= vectors[1].xo+vectors[1].x && vectors[1].xo+vectors[1].x <= vectors[0].xo+0.1 && vectors[0].yo-0.1 <= vectors[1].yo+vectors[1].y && vectors[1].yo+vectors[1].y <= vectors[0].yo+0.1) {
 
     const sumVec = {x: vectors[0].x+vectors[1].x, y: vectors[0].y+vectors[1].y, xo: vectors[1].xo, yo: vectors[1].yo};
-    console.log(sumVec);
+    //console.log(sumVec);
     ctx.beginPath();
     ctx.translate(v2pxl(sumVec.xo, 'x'), v2pxl(sumVec.yo,'y'));
-    ctx.strokeStyle="black";
+    ctx.strokeStyle="red";
     angle=Math.atan2(sumVec.x, sumVec.y);
     length=rA*Math.sqrt(sumVec.x**2 + sumVec.y**2);
     ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
@@ -353,10 +353,10 @@ function drawAll() {
   if (vectors[1].xo-0.1 <= vectors[0].xo+vectors[0].x && vectors[0].xo+vectors[0].x <= vectors[1].xo+0.1 && vectors[1].yo-0.1 <= vectors[0].yo+vectors[0].y && vectors[0].yo+vectors[0].y <= vectors[1].yo+0.1) {
 
     const sumVec = {x: vectors[0].x+vectors[1].x, y: vectors[0].y+vectors[1].y, xo: vectors[0].xo, yo: vectors[0].yo};
-    console.log(sumVec);
+    //console.log(sumVec);
     ctx.beginPath();
     ctx.translate(v2pxl(sumVec.xo, 'x'), v2pxl(sumVec.yo,'y'));
-    ctx.strokeStyle="black";
+    ctx.strokeStyle="red";
     angle=Math.atan2(sumVec.x, sumVec.y);
     length=rA*Math.sqrt(sumVec.x**2 + sumVec.y**2);
     ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
@@ -412,7 +412,7 @@ function v2pxl(v, xORy) {
   else {return cY+rA*v;}
 }
 
-const colors={0:"red", 1:"green", 2:"blue", 3:"#ff0", 4: "#f0f", 5:"#0ff"};
+const colors={0:"black", 1:"black", 2:"blue", 3:"#ff0", 4: "#f0f", 5:"#0ff"};
 
 var vectors;
 if (typeof answers[Qnumber] ==="object" && answers[Qnumber] != null && answers[Qnumber].hasOwnProperty("figure") && answers[Qnumber].hasOwnProperty("prm")) {
@@ -423,8 +423,8 @@ else {
   for (let j=0; j<argsFromMain[1].length; j++) {
     const vec = [randInt(-6,7), randInt(-6,7), randInt(-3,4), randInt(-3,4)];
 
-    if (vec.length == 2) {vectors.push({x: vec[0], y: vec[1], xo: randInt(-3,4), yo: randInt(-3,4), c: colors[j], points: null});}
-    else {vectors.push({x: vec[0], y: vec[1], xo: vec[2], yo: vec[3], c: colors[j], points: null});}
+    if (vec.length == 2) {vectors.push({x: vec[0], y: vec[1], xo: randInt(-3,4), yo: randInt(-3,4), c: "black", points: null});}
+    else {vectors.push({x: vec[0], y: vec[1], xo: vec[2], yo: vec[3], c: "black", points: null});}
   }
 
   for (let j=0; j<vectors.length; j++) {
@@ -523,7 +523,7 @@ function isPointOnLine(points, x,y) {
 }
 
 function onmouseup(e) {
-  vectors[vec2drag].c = colors[vec2drag];
+  vectors[vec2drag].c = "black";
   dragging=false;
   vec2drag=null;
   point = null;
@@ -544,7 +544,7 @@ function onmousedown(e) {
     if (isItON) {
        dragging=true;
        vec2drag=j;
-       vectors[j].c="black";
+       vectors[j].c="red";
        point = [Math.round(pxX), Math.round(pxY)];
        drawAll();
        break;
@@ -575,12 +575,12 @@ function onmousemove(e) {
     for (let j=0; j<vectors.length; j++) {
       const isItON = isPointOnLine(vectors[j].points, Math.round(pxX), Math.round(pxY));
       if (isItON) {
-        vectors[j].c="black";
+        vectors[j].c="red";
         drawAll();
         break;
       }
       else {
-        vectors[j].c=colors[j];
+        vectors[j].c="black";
         drawAll();
       }
     }
@@ -600,7 +600,7 @@ function drawAll() {
   for (let j=0; j<vectors.length; j++) {
     ctx.beginPath();
     ctx.translate(v2pxl(vectors[j].xo, 'x'), v2pxl(vectors[j].yo,'y'));
-    ctx.strokeStyle=vectors[j].c;
+    ctx.strokeStyle="black";
     //angle=hafPI-Math.atan2(vectors[j].y, vectors[j].x);
     //angle=Math.atan2(vectors[j].y, vectors[j].x);
     angle=Math.atan2(vectors[j].x, vectors[j].y);
@@ -614,10 +614,10 @@ function drawAll() {
 
   if (vectors[0].xo-0.1 <= vectors[1].xo && vectors[1].xo <= vectors[0].xo+0.1 && vectors[0].yo-0.1 <= vectors[1].yo && vectors[1].yo <= vectors[0].yo+0.1) {
     const sumVec = {x: vectors[0].x+vectors[1].x, y: vectors[0].y+vectors[1].y, xo: vectors[0].xo, yo: vectors[0].yo};
-    console.log(sumVec);
+    //console.log(sumVec);
     ctx.beginPath();
     ctx.translate(v2pxl(sumVec.xo, 'x'), v2pxl(sumVec.yo,'y'));
-    ctx.strokeStyle="black";
+    ctx.strokeStyle="red";
     angle=Math.atan2(sumVec.x, sumVec.y);
     length=rA*Math.sqrt(sumVec.x**2 + sumVec.y**2);
     ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
@@ -627,10 +627,10 @@ function drawAll() {
   if (vectors[0].xo-0.1 <= vectors[1].xo+vectors[1].x && vectors[1].xo+vectors[1].x <= vectors[0].xo+0.1 && vectors[0].yo-0.1 <= vectors[1].yo+vectors[1].y && vectors[1].yo+vectors[1].y <= vectors[0].yo+0.1) {
 
     const sumVec = {x: vectors[0].x+vectors[1].x, y: vectors[0].y+vectors[1].y, xo: vectors[1].xo, yo: vectors[1].yo};
-    console.log(sumVec);
+    //console.log(sumVec);
     ctx.beginPath();
     ctx.translate(v2pxl(sumVec.xo, 'x'), v2pxl(sumVec.yo,'y'));
-    ctx.strokeStyle="black";
+    ctx.strokeStyle="red";
     angle=Math.atan2(sumVec.x, sumVec.y);
     length=rA*Math.sqrt(sumVec.x**2 + sumVec.y**2);
     ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
@@ -640,10 +640,10 @@ function drawAll() {
   if (vectors[1].xo-0.1 <= vectors[0].xo+vectors[0].x && vectors[0].xo+vectors[0].x <= vectors[1].xo+0.1 && vectors[1].yo-0.1 <= vectors[0].yo+vectors[0].y && vectors[0].yo+vectors[0].y <= vectors[1].yo+0.1) {
 
     const sumVec = {x: vectors[0].x+vectors[1].x, y: vectors[0].y+vectors[1].y, xo: vectors[0].xo, yo: vectors[0].yo};
-    console.log(sumVec);
+    //console.log(sumVec);
     ctx.beginPath();
     ctx.translate(v2pxl(sumVec.xo, 'x'), v2pxl(sumVec.yo,'y'));
-    ctx.strokeStyle="black";
+    ctx.strokeStyle="red";
     angle=Math.atan2(sumVec.x, sumVec.y);
     length=rA*Math.sqrt(sumVec.x**2 + sumVec.y**2);
     ctx.moveTo(0, 0); ctx.rotate(angle); ctx.lineTo(0, -length); ctx.lineTo(-3, 6-length); ctx.lineTo(0, -length); ctx.lineTo(3, 6-length); ctx.stroke(); ctx.rotate(-angle);
