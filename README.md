@@ -59,7 +59,7 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 
 <ul><li>In addition to typical short-answer questions that can be answered on the screen, a new kind questions for which students are required to "play" with mouse to complete a required task to answer is added.</li>
 <li>Example: <a href="https://generateNscore.github.io/html4quiz/Examples/Nk001/Nk001.py">Nk001.py</a></li>
-</ul></ul>
+</ul>
 <br>
 
 <li>Version 0.0.11</li>
