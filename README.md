@@ -35,8 +35,17 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 
 ## Changes
 <ul>
-<li>Version 0.0.25</li>
-<ul><li>Testing for README.md link to GitHub.</li>
+<li>Version 0.0.28</li>
+<ul><li>Added an option to reuse previous work.</li>
+<ul><li>When an answer of question among many in previous work whose question sheets has been distributed is found incorrect, simply setting the option Treu and re-running the work is all you need to do.</li>
+<li>The new option can be added as the last argument to the instance as:</li></ul>
+
+```python
+
+h4q.work('exam1', 'testing', STDs, QGs, flag4Preview, flag4Choice, flag4Shuffling, resources, flag4Previous)
+
+```
+
 </ul>
 <br>
 <li>Version 0.0.22</li>
