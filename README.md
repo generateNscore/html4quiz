@@ -35,20 +35,22 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 
 ## Changes
 <ul>
-<li>Version 0.0.28</li>
+<li>Version 0.0.29</li>
 <ul><li>Added an option to reuse previous work.</li>
-<ul><li>When an answer of question among many in previous work whose question sheets has been distributed is found incorrect, simply setting the option Treu and re-running the work is all you need to do.</li>
+<ul><li>When an answer of question among many in previous work whose question sheets has been distributed is found incorrect, simply setting the option <strong>True</strong> and re-running the work is all you need to do.</li>
 <li>The new option, <strong>flag4Previous</strong> can be added as the last argument to the instance as:</li>
-<li>The default value of the option is False.</li></ul>
+<li>If not provided, the default value of the option, False, is assumed.</li></ul>
 
 ```python
 
+flag4Previous = True
 h4q.work('exam1', 'testing', STDs, QGs, flag4Preview, flag4Choice, flag4Shuffling, resources, flag4Previous)
 
 ```
 
 </ul>
 <br>
+
 <li>Version 0.0.22</li>
 <ul><li>Added "res" folder to GitHub for the Javascript scripts of figures and additional data saved in JSON format.</li>
 <li>Added a "getResource()" function to the package to access the data.</li>
@@ -62,13 +64,6 @@ h4q.work('exam1', 'testing', STDs, QGs, flag4Preview, flag4Choice, flag4Shufflin
 <li>Version 0.0.20</li>
 
 <ul><li>Finallized a way to upload/download Javascript scripts saved in JSON files for figures.<a href="https://github.com/generateNscore/html4quiz/wiki#h-download-json-file-of-javascript-code-for-figure-contents">H. Download Json file of Javascript code for figure contents</a></li></ul>
-<br>
-
-<li>Version 0.0.16</li>
-
-<ul><li>In addition to typical short-answer questions that can be answered on the screen, a new kind questions for which students are required to "play" with mouse to complete a required task to answer is added.</li>
-<li>Example: <a href="https://generateNscore.github.io/html4quiz/Examples/Nk001/Nk001.py">Nk001.py</a></li>
-</ul>
 <br>
 
 <li>Version 0.0.11</li>
