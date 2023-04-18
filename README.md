@@ -35,6 +35,14 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 
 ## Changes
 <ul>
+<li>Version 0.0.30</li>
+<ul><li>In addition to using a user-defined function for answers, a new way to use resources saved in <a href="https://github.com/generateNscore/html4quiz/res/">https://github.com/generateNscore/html4quiz/res</a> is added.</li>
+<li>For details, please look at <a href="https://github.com/generateNscore/html4quiz/Examples/Ex004/Ex004.py">Ex004</a></li>
+<li><a href="https://github.com/generateNscore/html4quiz/Examples/Ex004/Ex004/Ex004/index.html">Previews</a></li>
+</ul>
+<br>
+
+
 <li>Version 0.0.29</li>
 <ul><li>Added an option to reuse previous work.</li>
 <ul><li>When an answer of question among many in previous work whose question sheets has been distributed is found incorrect, simply setting the option <strong>True</strong> and re-running the work is all you need to do.</li>
