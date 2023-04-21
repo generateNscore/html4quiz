@@ -6,18 +6,15 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 
 ## Features
 <ul>
-<li>Everything is on your local PC, grows with your creativity, and you own them all.</li>
-<li>Question sheets in HTML files, each named with a corresponding identification number, are distributed to students over the network.</li>
-<li>Students use their mobile devices to read, answer questions, save answers to a text file for submission within the same HTML page, and submit the text file as directed over the network.</li>
-<li>Grading answers from text files submitted by students can be done with a few keystrokes.</li>
-<li>A question begins with a short answer in a number or word.</li>
-<li>Questions with numeric answers can be converted to multiple choice questions simply by flipping the flag.</li>
-<li>Questions can start with multiple choice.</li>
-<li>Mathematical equations in LaTeX format can be included in both question texts and choices.</li>
-<li>Figures can be included in both question text and choices.</li>
-<li>Question text, mathematical equations, and figures are all randomly selected for each question sheet in a controlled manner.</li>
-<li>Randomness is acquired by executing the answer string, which is a short Python script, that is part of question.</li>
-<li>To increase your creativity, user-defined functions can be easily added for the answer string.</li>
+<li>Generates personalized question sheets in an HTML file format.</li>
+<li>User will have total control of the personalization of questions and question sheets.</li>
+<li>Each HTML file will auto-generate the file name that corresponds to the identification number.</li>
+<li>Variable question types can be generated (multiple-choice, short answer, default, etc.).</li>
+<li>Figures can be edited as well as questions (pre-made images can also be used).</li>
+<li>Mathematical equations can be included in the generated questions via Latex.</li>
+<li>User defined functions can be incorporated.</li>
+<li>Use of the HTML file format will allow students to answer questions via text files over the internet.</li>
+<li>Scoring question sheets (text files) can be done in an instant.</li>
 </ul>
 
 ## Where to get it
