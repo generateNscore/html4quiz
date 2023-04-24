@@ -6,16 +6,20 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 
 ## Features
 <ul>
-<li>Generates personalized question sheets in an HTML file format.</li>
-<li>User will have total control of the personalization of questions and question sheets.</li>
-<li>Each HTML file will auto-generate the file name that corresponds to the identification number.</li>
-<li>Variable question types can be generated (multiple-choice, short answer, default, etc.).</li>
-<li>Figures can be edited as well as questions (pre-made images can also be used).</li>
-<li>Mathematical equations can be included in the generated questions via Latex.</li>
-<li>User defined functions can be incorporated.</li>
-<li>Use of the HTML file format will allow students to answer questions via text files over the internet.</li>
-<li>Scoring question sheets (text files) can be done in an instant.</li>
-</ul>
+<li><strong>Local</strong>: Everything is on your local PC, grows with your creativity, and you own everything, unlike the many quiz generators available online.</li>
+<li><strong>HTML files</srong>: Question sheets in HTML files, each named with a corresponding identification number, are distributed to students over the network.</li>
+<ul><li>Students use their mobile devices to read, answer questions, save answers to a text file for submission within the same HTML page, and submit the text file as directed over the network.</li>
+<li>Saving answers to a file can be repeated as many times as desired.</li></ul>
+<li><strong>Easy grading</stron>Grade answers in text files submitted by all students can be achieved with a few keystrokes.</li>
+<li><strong>Two kinds of HTML files</strong></li>
+<ol><li>First kind is to preview questions before generating sheets.</li>
+<li>Second kind is the set of sheets.</li></ol>
+<li><strong>Two kinds of questions</strong</li>
+<ol><li>Short answr questions of requiring a number of a word.</li>
+<li>Multiple choice questions whose choices are genterated randomly by one of various methods or by Python coding.</li></ol>
+<li><strong>Figures</strong> as well as <strong>mathematical expressions</strong> in LaTeX format can be included in both question texts and choices.</li>
+<li><strong.Randomness</strong> is controlled by users with Python scripts.</li></ul>
+
 
 ## Where to get it
 
