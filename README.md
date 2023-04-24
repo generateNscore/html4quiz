@@ -25,10 +25,6 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 
 <pre lang=sh>pip install html4quiz</pre>
 
-<ul>
-<li>The source code is currently hosted on GitHub at: <a href="https://github.com/generateNscore/html4quiz">https://github.com/generateNscore/html4quiz</a></li>
-</ul>
-
 
 ## Dependencies
 <ul><li>None</li></ul>
