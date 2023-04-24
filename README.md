@@ -8,8 +8,9 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 <ul>
 <li><strong>Local</strong>: Everything is on your local PC, grows with your creativity, and you own everything, unlike the many quiz generators available online.</li>
 <li><strong>HTML files</strong>: Question sheets in HTML files, each named with a corresponding identification number, are distributed to students over the network.</li>
-<ul><li>Students use their mobile devices to read, answer questions, save answers to a text file for submission within the same HTML page, and submit the text file as directed over the network.</li>
-<li>Saving answers to a file can be repeated as many times as desired.</li></ul>
+<ul><li>Each HTML file is complete in itself with everything included.</li>
+<li>Students use their mobile devices to read, answer questions, save answers to a text file for submission within the same HTML page, and submit the text file as directed over the network.</li>
+<li>Answers can be changed, and saving answers to a text file can be repeated as many times as desired until the file is submitted.</li></ul>
 <li><strong>Easy grading</strong>: Grade answers in text files submitted by all students can be achieved with a few keystrokes.</li>
 <li><strong>Two kinds of HTML files</strong></li>
 <ol><li>First kind is to preview questions before generating sheets.</li>
