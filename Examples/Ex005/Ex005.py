@@ -1,4 +1,4 @@
-import html4quiz_B as h4q
+import html4quiz as h4q
 
 
 QGs = []
@@ -43,7 +43,7 @@ prms1=[[50, 1400], [columnsN, 1], vStr, 'shuffle']'''
 
 QGs.append([Q, A, ('Ex005', 'qg2'), 'short'])
 
-flagPreview = False
+flagPreview = True
 flagChoice = True
 flagShuffling = True
 
