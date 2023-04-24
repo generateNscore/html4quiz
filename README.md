@@ -18,7 +18,9 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 <ol><li>Short answr questions of requiring a number of a word.</li>
 <li>Multiple choice questions whose choices are genterated randomly by one of various methods or by Python coding.</li></ol>
 <li><strong>Figures</strong> as well as <strong>mathematical expressions</strong> in LaTeX format can be included in both question texts and choices.</li>
-<li><strong>Randomness</strong> is controlled completely by users with Python scripts.</li></ul>
+<li><strong>Randomness</strong> is controlled completely by users with Python scripts.</li>
+<li><strong>Easy correction</strong>: When some answers are found incorrect after question sheets are distributed, the answers can be corrected by simply re-generate the sheets with the "work" pickle file (refer to Version 0.0.29). </li></ul>
+
 
 
 ## Where to get it
