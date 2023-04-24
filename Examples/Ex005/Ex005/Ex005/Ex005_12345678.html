@@ -80,32 +80,419 @@ function setCheckedRadio(q) {
   if (radios.length > 0 && answers[q] != null) {radios[answers[q]-1].setAttribute("checked", true);}
 }
 
+
 function destroyClickedElement(event) {
     document.body.removeChild(event.target);
 }
 </script>
 <script type="application/javascript">
 function display_Q0() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>1.</strong></font> Find the integer in the box marked with an "X" that completes the division expression below.</p><div> <div style="float: left"><label class="radiocontainer"> 8<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 1<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 9<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 2<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>';
+document.getElementById("Qs").innerHTML=`<p><font color="#dd0000"><strong>1.</strong></font> Find the integer in the box marked with an "X" that completes the division expression below.</p><div> <div style="float: left"><label class="radiocontainer"> 1<input type="radio" name="Q0" onclick="handleClick(this);" value="0"><span class="checkmark"></span></label><label class="radiocontainer"> 6<input type="radio" name="Q0" onclick="handleClick(this);" value="1"><span class="checkmark"></span></label><label class="radiocontainer"> 3<input type="radio" name="Q0" onclick="handleClick(this);" value="2"><span class="checkmark"></span></label><label class="radiocontainer"> 2<input type="radio" name="Q0" onclick="handleClick(this);" value="3"><span class="checkmark"></span></label><label class="radiocontainer"> None of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="4"><span class="checkmark"></span></label><label class="radiocontainer"> All of the above<input type="radio" name="Q0" onclick="handleClick(this);" value="5"><span class="checkmark"></span></label></div></div>`;
 Qnumber = 0;
+prmtrQ = 0;
 setCheckedRadio(0);
 
 var cnvs = document.getElementById("canvas");
 var ctx = cnvs.getContext("2d");
 ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
-HTTP Error 404: Not Found
+ctx = cnvs.getContext("2d", { willReadFrequently: true }); //canvasImage 사용시;
+var argsFromMain=null;
+function init(prms) {argsFromMain=prms;}
+init([[50, 800], [5, 1], ['2', '÷', 'x', '=', '2'], 'null']);
+
+if (argsFromMain == null) {argsFromMain=[[500, 1400], [15, 1], ['x', '8', '÷', '3', '=', '6'], 'submit'];}
+//if (argsFromMain == null) {argsFromMain=[[500, 1400], [6, 1], ['x', '8', '÷', '3', '=', '6'], 'null'];}
+[cnvs.height, cnvs.width]=argsFromMain[0];
+var cw = cnvs.width, ch = cnvs.height, cells=[];
+const cellW=50, hafW=cellW/2, [cols, rows]=argsFromMain[1];
+//cnvs.height=Math.max(10, rows)*50+40; ch=cnvs.height;
+cnvs.height=(rows+1)*cellW; ch=cnvs.height;
+ctx.clearRect(0,0,cw,ch);
+
+const yTop=20.5, xLeft=20.5;
+const eqn = argsFromMain[2];
+const submitting = argsFromMain[3];
+var pxX, pxY, bbox, dragging=false, clickedChar=null;
+var canvasImage;
+
+var clickedValue=null;
+var inside;
+
+const SubmitBtn={x:(cols+2)*cellW, y:40, w:140, h:50, color:"#d7d"};
+
+if (prmtrs[prmtrQ] == null) {
+  //var arr = [];
+prmtrs[prmtrQ] =[];
+  for (let j=0; j<eqn.length; j++) {
+    prmtrs[prmtrQ].push({c: eqn[j], n: j, color:"black", x:j*cellW+xLeft, y:yTop});
+  }
+  //prmtrs[prmtrQ]=arr;
+}
+
+function drawBackground() {
+  ctx.clearRect(0,0,cw,ch);
+
+  ctx.strokeStyle = "#eee";
+  var yBottom=yTop+rows*cellW, x, y;
+  for (let j=0; j<=cols; j++) {
+    ctx.beginPath();
+    x=xLeft+j*cellW;
+    ctx.moveTo(x, yTop);
+    ctx.lineTo(x, yBottom);
+    ctx.stroke();
+  }
+  var xRight=xLeft+cols*cellW
+  for (let j=0; j<=rows; j++) {
+    ctx.beginPath();
+    y = yTop+j*cellW;
+    ctx.moveTo(xLeft, y);
+    ctx.lineTo(xRight, y);
+    ctx.stroke();
+  }
+
+  if (submitting == 'submit') {
+    ctx.beginPath();
+    ctx.shadowColor = "black";
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 1;
+    ctx.shadowBlur = 3;
+    ctx.fillStyle=SubmitBtn.color;
+    ctx.fillRect(SubmitBtn.x-SubmitBtn.w/2,SubmitBtn.y-SubmitBtn.h/2,SubmitBtn.w,SubmitBtn.h);
+    ctx.shadowColor = "transparent";
+    ctx.fillStyle="black"; ctx.font = "28px arial"; ctx.textAlign="center"; 
+    ctx.fillText("Submit", SubmitBtn.x, SubmitBtn.y+10);
+    ctx.closePath();
+  }
+
+  canvasImage=ctx.getImageData(0,0,cw,ch);
+}
+
+drawBackground();
+
+
+function trim(x) {
+  return x.replace(/^\s+|\s+$/gm, '');
+}
+
+function Submit() {
+  var ans="";
+  var flag;
+  for (let n=0; n<cols*rows; n++) {
+    flag=null;
+    for (let j=0; j<prmtrs[prmtrQ].length; j++) {
+      if (prmtrs[prmtrQ][j].n == n) {
+        flag=j;
+        break;
+      }
+    }
+    if (flag == null) {ans += ' ';}
+    else {ans += prmtrs[prmtrQ][flag].c;}
+  }
+  answers[Qnumber]="'"+trim(ans)+"'";
+  addAnswers2Textarea();
+}
+
+if (submitting == 'submit') {
+  cnvs.addEventListener('mouseup', onmouseup);
+  cnvs.addEventListener('mousedown', onmousedown);
+  cnvs.addEventListener('mousemove', onmousemove);
+}
+
+function onmousedown(e) {
+  e.preventDefault();
+  bbox = cnvs.getBoundingClientRect();
+  pxX=e.clientX-bbox.left*(cw/bbox.width);
+  pxY=e.clientY-bbox.top*(ch/bbox.height);
+
+  if (SubmitBtn.x-SubmitBtn.w/2<=pxX && pxX <= SubmitBtn.x+SubmitBtn.w/2 && SubmitBtn.y-SubmitBtn.h/2<=pxY && pxY <= SubmitBtn.y+SubmitBtn.h/2) {Submit();}
+
+  for (let j=0; j<prmtrs[prmtrQ].length; j++) {
+    if (insideRect(prmtrs[prmtrQ][j], pxX, pxY)) {
+        dragging=true;
+        clickedChar=j;
+          prmtrs[prmtrQ][clickedChar].color="#f00";
+        break;
+    }
+  }
+
+}
+
+function onmouseup(e) {
+  e.preventDefault();
+  bbox = cnvs.getBoundingClientRect();
+  pxX=e.clientX-bbox.left*(cw/bbox.width);
+  pxY=e.clientY-bbox.top*(ch/bbox.height);
+
+  if (dragging == true) {
+    prmtrs[prmtrQ][clickedChar].color="black";
+    drawAll();
+    clickedChar=null;
+    dragging=false;
+  }
+}
+
+function insideRect(it, x, y) {
+  if (it.x+10 < x && x < it.x+cellW-10 && it.y+10 < y && y < it.y+cellW-10) return true;
+  else return false;
+}
+
+
+function onmousemove(e) {
+  e.preventDefault();
+  bbox = cnvs.getBoundingClientRect();
+  pxX=e.clientX-bbox.left*(cw/bbox.width);
+  pxY=e.clientY-bbox.top*(ch/bbox.height);
+
+  if (dragging) {
+    const [row, col] = pxl2RowCol(pxX, pxY);
+    prmtrs[prmtrQ][clickedChar].n=col+row*cols;
+    prmtrs[prmtrQ][clickedChar].x=col*cellW+xLeft;
+    prmtrs[prmtrQ][clickedChar].y=row*cellW+yTop;
+    drawAll();
+  }
+  else {
+    for (let j=0; j<prmtrs[prmtrQ].length; j++) {
+      if (insideRect(prmtrs[prmtrQ][j], pxX, pxY)) {
+        prmtrs[prmtrQ][j].color = "red";
+        drawAll();
+        break;
+      }
+      else {
+        if (prmtrs[prmtrQ][j].color == "red") {
+          prmtrs[prmtrQ][j].color="black";
+          drawAll();
+        }
+      }
+    }
+  }
+}
+
+function pxl2RowCol(x, y) {
+  return [Math.floor((y-yTop)/cellW), Math.floor((x-xLeft)/cellW)];
+}
+
+function getValue() {
+  let col=Math.floor((pxX-20)/cellW);
+  let row=Math.floor((pxY-20)/cellW);
+  return col+row*cols;
+}
+
+function drawAll() {
+  ctx.putImageData(canvasImage,0,0);
+
+  ctx.font = "36px arial"; ctx.textAlign="center";
+  for (let j=0; j<prmtrs[prmtrQ].length; j++) {
+    ctx.beginPath(); ctx.fillStyle=prmtrs[prmtrQ][j].color;
+    ctx.fillText(prmtrs[prmtrQ][j].c, prmtrs[prmtrQ][j].x+hafW, prmtrs[prmtrQ][j].y+40);
+  }
+}
+
+drawAll();
 }
 function display_Q1() {
-document.getElementById("Qs").innerHTML='<p><font color=red><strong>2.</strong></font> Move the numbers and arithmetic signs shown below to complete the resulting equation with no spaces between them. Leading and trailing spaces are allowed. When finished, click the "Submit" button. </p>';
+document.getElementById("Qs").innerHTML=`<p><font color="#dd0000"><strong>2.</strong></font> Move the numbers and arithmetic signs shown below to complete the resulting equation with no spaces between them. Leading and trailing spaces are allowed. When finished, click the "Submit" button. </p>`;
 Qnumber = 1;
+prmtrQ = 1;
 setCheckedRadio(1);
 
 var cnvs = document.getElementById("canvas");
 var ctx = cnvs.getContext("2d");
 ctx.clearRect(0,0, cnvs.width, cnvs.height);
 cnvs.height=300;
-HTTP Error 404: Not Found
+ctx = cnvs.getContext("2d", { willReadFrequently: true }); //canvasImage 사용시;
+var argsFromMain=null;
+function init(prms) {argsFromMain=prms;}
+init([[50, 1400], [11, 1], ['÷', '1', '=', '9', '0', '9', '0'], 'submit']);
+
+if (argsFromMain == null) {argsFromMain=[[500, 1400], [15, 1], ['x', '8', '÷', '3', '=', '6'], 'submit'];}
+//if (argsFromMain == null) {argsFromMain=[[500, 1400], [6, 1], ['x', '8', '÷', '3', '=', '6'], 'null'];}
+[cnvs.height, cnvs.width]=argsFromMain[0];
+var cw = cnvs.width, ch = cnvs.height, cells=[];
+const cellW=50, hafW=cellW/2, [cols, rows]=argsFromMain[1];
+//cnvs.height=Math.max(10, rows)*50+40; ch=cnvs.height;
+cnvs.height=(rows+1)*cellW; ch=cnvs.height;
+ctx.clearRect(0,0,cw,ch);
+
+const yTop=20.5, xLeft=20.5;
+const eqn = argsFromMain[2];
+const submitting = argsFromMain[3];
+var pxX, pxY, bbox, dragging=false, clickedChar=null;
+var canvasImage;
+
+var clickedValue=null;
+var inside;
+
+const SubmitBtn={x:(cols+2)*cellW, y:40, w:140, h:50, color:"#d7d"};
+
+if (prmtrs[prmtrQ] == null) {
+  //var arr = [];
+prmtrs[prmtrQ] =[];
+  for (let j=0; j<eqn.length; j++) {
+    prmtrs[prmtrQ].push({c: eqn[j], n: j, color:"black", x:j*cellW+xLeft, y:yTop});
+  }
+  //prmtrs[prmtrQ]=arr;
+}
+
+function drawBackground() {
+  ctx.clearRect(0,0,cw,ch);
+
+  ctx.strokeStyle = "#eee";
+  var yBottom=yTop+rows*cellW, x, y;
+  for (let j=0; j<=cols; j++) {
+    ctx.beginPath();
+    x=xLeft+j*cellW;
+    ctx.moveTo(x, yTop);
+    ctx.lineTo(x, yBottom);
+    ctx.stroke();
+  }
+  var xRight=xLeft+cols*cellW
+  for (let j=0; j<=rows; j++) {
+    ctx.beginPath();
+    y = yTop+j*cellW;
+    ctx.moveTo(xLeft, y);
+    ctx.lineTo(xRight, y);
+    ctx.stroke();
+  }
+
+  if (submitting == 'submit') {
+    ctx.beginPath();
+    ctx.shadowColor = "black";
+    ctx.shadowOffsetX = 1;
+    ctx.shadowOffsetY = 1;
+    ctx.shadowBlur = 3;
+    ctx.fillStyle=SubmitBtn.color;
+    ctx.fillRect(SubmitBtn.x-SubmitBtn.w/2,SubmitBtn.y-SubmitBtn.h/2,SubmitBtn.w,SubmitBtn.h);
+    ctx.shadowColor = "transparent";
+    ctx.fillStyle="black"; ctx.font = "28px arial"; ctx.textAlign="center"; 
+    ctx.fillText("Submit", SubmitBtn.x, SubmitBtn.y+10);
+    ctx.closePath();
+  }
+
+  canvasImage=ctx.getImageData(0,0,cw,ch);
+}
+
+drawBackground();
+
+
+function trim(x) {
+  return x.replace(/^\s+|\s+$/gm, '');
+}
+
+function Submit() {
+  var ans="";
+  var flag;
+  for (let n=0; n<cols*rows; n++) {
+    flag=null;
+    for (let j=0; j<prmtrs[prmtrQ].length; j++) {
+      if (prmtrs[prmtrQ][j].n == n) {
+        flag=j;
+        break;
+      }
+    }
+    if (flag == null) {ans += ' ';}
+    else {ans += prmtrs[prmtrQ][flag].c;}
+  }
+  answers[Qnumber]="'"+trim(ans)+"'";
+  addAnswers2Textarea();
+}
+
+if (submitting == 'submit') {
+  cnvs.addEventListener('mouseup', onmouseup);
+  cnvs.addEventListener('mousedown', onmousedown);
+  cnvs.addEventListener('mousemove', onmousemove);
+}
+
+function onmousedown(e) {
+  e.preventDefault();
+  bbox = cnvs.getBoundingClientRect();
+  pxX=e.clientX-bbox.left*(cw/bbox.width);
+  pxY=e.clientY-bbox.top*(ch/bbox.height);
+
+  if (SubmitBtn.x-SubmitBtn.w/2<=pxX && pxX <= SubmitBtn.x+SubmitBtn.w/2 && SubmitBtn.y-SubmitBtn.h/2<=pxY && pxY <= SubmitBtn.y+SubmitBtn.h/2) {Submit();}
+
+  for (let j=0; j<prmtrs[prmtrQ].length; j++) {
+    if (insideRect(prmtrs[prmtrQ][j], pxX, pxY)) {
+        dragging=true;
+        clickedChar=j;
+          prmtrs[prmtrQ][clickedChar].color="#f00";
+        break;
+    }
+  }
+
+}
+
+function onmouseup(e) {
+  e.preventDefault();
+  bbox = cnvs.getBoundingClientRect();
+  pxX=e.clientX-bbox.left*(cw/bbox.width);
+  pxY=e.clientY-bbox.top*(ch/bbox.height);
+
+  if (dragging == true) {
+    prmtrs[prmtrQ][clickedChar].color="black";
+    drawAll();
+    clickedChar=null;
+    dragging=false;
+  }
+}
+
+function insideRect(it, x, y) {
+  if (it.x+10 < x && x < it.x+cellW-10 && it.y+10 < y && y < it.y+cellW-10) return true;
+  else return false;
+}
+
+
+function onmousemove(e) {
+  e.preventDefault();
+  bbox = cnvs.getBoundingClientRect();
+  pxX=e.clientX-bbox.left*(cw/bbox.width);
+  pxY=e.clientY-bbox.top*(ch/bbox.height);
+
+  if (dragging) {
+    const [row, col] = pxl2RowCol(pxX, pxY);
+    prmtrs[prmtrQ][clickedChar].n=col+row*cols;
+    prmtrs[prmtrQ][clickedChar].x=col*cellW+xLeft;
+    prmtrs[prmtrQ][clickedChar].y=row*cellW+yTop;
+    drawAll();
+  }
+  else {
+    for (let j=0; j<prmtrs[prmtrQ].length; j++) {
+      if (insideRect(prmtrs[prmtrQ][j], pxX, pxY)) {
+        prmtrs[prmtrQ][j].color = "red";
+        drawAll();
+        break;
+      }
+      else {
+        if (prmtrs[prmtrQ][j].color == "red") {
+          prmtrs[prmtrQ][j].color="black";
+          drawAll();
+        }
+      }
+    }
+  }
+}
+
+function pxl2RowCol(x, y) {
+  return [Math.floor((y-yTop)/cellW), Math.floor((x-xLeft)/cellW)];
+}
+
+function getValue() {
+  let col=Math.floor((pxX-20)/cellW);
+  let row=Math.floor((pxY-20)/cellW);
+  return col+row*cols;
+}
+
+function drawAll() {
+  ctx.putImageData(canvasImage,0,0);
+
+  ctx.font = "36px arial"; ctx.textAlign="center";
+  for (let j=0; j<prmtrs[prmtrQ].length; j++) {
+    ctx.beginPath(); ctx.fillStyle=prmtrs[prmtrQ][j].color;
+    ctx.fillText(prmtrs[prmtrQ][j].c, prmtrs[prmtrQ][j].x+hafW, prmtrs[prmtrQ][j].y+40);
+  }
+}
+
+drawAll();
 }
 
 document.onkeydown = function (e) {
@@ -121,7 +508,9 @@ document.onkeydown = function (e) {
 var Qnumber = 0;
 var Qmax = 1;
 var answers = [];
-for (let j=0; j<=Qmax; j++) {answers.push(null);}
+var prmtrs = [];
+var prmtrQ = null;
+for (let j=0; j<=Qmax; j++) {answers.push(null);prmtrs.push(null);}
 
 display_Q0();</script>
 </body>

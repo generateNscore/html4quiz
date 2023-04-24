@@ -39,11 +39,11 @@ vStr=list(f'{vA}{op}{vB}={vAns}')
 columnsN=len(vStr)+4
 random.shuffle(vStr)
 
-prms1=[[50, 1400], [columnsN, 1], vStr, 'shuffle']'''
+prms1=[[50, 1400], [columnsN, 1], vStr, 'submit']'''
 
 QGs.append([Q, A, ('Ex005', 'qg2'), 'short'])
 
-flagPreview = True
+flagPreview = False
 flagChoice = True
 flagShuffling = True
 
