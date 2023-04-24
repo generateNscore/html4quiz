@@ -10,15 +10,15 @@ html4quiz is a package that helps you generate question sheets with as many HTML
 <li><strong>HTML files</strong>: Question sheets in HTML files, each named with a corresponding identification number, are distributed to students over the network.</li>
 <ul><li>Students use their mobile devices to read, answer questions, save answers to a text file for submission within the same HTML page, and submit the text file as directed over the network.</li>
 <li>Saving answers to a file can be repeated as many times as desired.</li></ul>
-<li><strong>Easy grading</strong>Grade answers in text files submitted by all students can be achieved with a few keystrokes.</li>
+<li><strong>Easy grading</strong>: Grade answers in text files submitted by all students can be achieved with a few keystrokes.</li>
 <li><strong>Two kinds of HTML files</strong></li>
 <ol><li>First kind is to preview questions before generating sheets.</li>
 <li>Second kind is the set of sheets.</li></ol>
-<li><strong>Two kinds of questions</strong</li>
+<li><strong>Two kinds of questions</strong></li>
 <ol><li>Short answr questions of requiring a number of a word.</li>
 <li>Multiple choice questions whose choices are genterated randomly by one of various methods or by Python coding.</li></ol>
 <li><strong>Figures</strong> as well as <strong>mathematical expressions</strong> in LaTeX format can be included in both question texts and choices.</li>
-<li><strong.Randomness</strong> is controlled by users with Python scripts.</li></ul>
+<li><strong>Randomness</strong> is controlled by users with Python scripts.</li></ul>
 
 
 ## Where to get it
